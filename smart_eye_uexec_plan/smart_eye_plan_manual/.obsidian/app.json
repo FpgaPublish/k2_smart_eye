@@ -1,1 +1,4 @@
-{}
+{
+  "autoPairBrackets": false,
+  "autoPairMarkdown": false
+}

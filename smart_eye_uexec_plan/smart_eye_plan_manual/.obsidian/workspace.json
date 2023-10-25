@@ -4,20 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "698195ae2e90c136",
+        "id": "107efd51eb9ad8dc",
         "type": "tabs",
         "children": [
           {
-            "id": "3b5f1a9a59880ecf",
+            "id": "2870976e359473eb",
             "type": "leaf",
             "state": {
               "type": "canvas",
               "state": {
                 "file": "计划手册.canvas",
                 "viewState": {
-                  "x": 280.8001708984375,
-                  "y": 91.20004272460938,
-                  "zoom": 0
+                  "x": 636.9546728519613,
+                  "y": 672.7852476111624,
+                  "zoom": 0.4
                 }
               }
             }
@@ -149,8 +149,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "3b5f1a9a59880ecf",
+  "active": "2870976e359473eb",
   "lastOpenFiles": [
-    "计划手册.canvas"
+    "计划手册.canvas",
+    "板间通信模块的设计.md"
   ]
 }
