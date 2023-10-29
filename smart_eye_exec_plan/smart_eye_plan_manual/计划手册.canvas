@@ -1,13 +1,21 @@
 {
 	"nodes":[
-		{"id":"0ad9ef741a2a8d77","x":561,"y":-66,"width":400,"height":400,"type":"file","file":"基础设计流程.md"},
-		{"id":"549fd8a17dfcc738","x":-220,"y":140,"width":250,"height":60,"type":"text","text":"## 板级模块设计"},
+		{"id":"aa2250301e362f29","x":1098,"y":391,"width":400,"height":400,"type":"file","file":"wiki的自动化维护.md"},
+		{"type":"file","file":"基础设计流程.md","id":"0ad9ef741a2a8d77","x":561,"y":-66,"width":400,"height":400},
+		{"type":"text","text":"## 板级模块设计","id":"549fd8a17dfcc738","x":-220,"y":140,"width":250,"height":60},
 		{"type":"text","text":"# 计划与总结手册","id":"26590aa762ecb618","x":-255,"y":-40,"width":320,"height":60},
-		{"id":"ae438f500dbed3c0","x":160,"y":88,"width":250,"height":164,"type":"text","text":"### 设计目标\n- [x] 搭建win基础设计环节\n- [x] 搭建ubuntu基础设计"}
+		{"type":"text","text":"### 设计目标\n- [x] 搭建win基础设计环节\n- [x] 搭建ubuntu基础设计","id":"ae438f500dbed3c0","x":160,"y":88,"width":250,"height":164},
+		{"type":"text","text":"## 算法开发模块","id":"530a16c9cd4115d8","x":-220,"y":560,"width":250,"height":60},
+		{"type":"text","text":"### 设计目标\n- [x] 完成算法数据的生成\n- [x] 完成普通文件的共享\n- [x] 完成自动化仿真\n- [x] 验证一个已有的算法模块\n- [x] 完成算法开发流程的建立\n- [x] 完成算法研发的标准","id":"b646fdcf954bd698","x":160,"y":474,"width":305,"height":232},
+		{"type":"file","file":"算法开发平台.md","id":"8d37c0bd35310bac","x":561,"y":390,"width":400,"height":400}
 	],
 	"edges":[
 		{"id":"8a5d58e512c4d687","fromNode":"26590aa762ecb618","fromSide":"bottom","toNode":"549fd8a17dfcc738","toSide":"top"},
 		{"id":"6a72980d778a6d50","fromNode":"549fd8a17dfcc738","fromSide":"right","toNode":"ae438f500dbed3c0","toSide":"left"},
-		{"id":"de5658e24470d4ce","fromNode":"ae438f500dbed3c0","fromSide":"right","toNode":"0ad9ef741a2a8d77","toSide":"left"}
+		{"id":"de5658e24470d4ce","fromNode":"ae438f500dbed3c0","fromSide":"right","toNode":"0ad9ef741a2a8d77","toSide":"left"},
+		{"id":"dd98732cc1fc1de1","fromNode":"549fd8a17dfcc738","fromSide":"bottom","toNode":"530a16c9cd4115d8","toSide":"top"},
+		{"id":"aa22c60c0338b848","fromNode":"530a16c9cd4115d8","fromSide":"right","toNode":"b646fdcf954bd698","toSide":"left"},
+		{"id":"08dc79751522e956","fromNode":"b646fdcf954bd698","fromSide":"right","toNode":"8d37c0bd35310bac","toSide":"left"},
+		{"id":"a9830c3764205f41","fromNode":"8d37c0bd35310bac","fromSide":"right","toNode":"aa2250301e362f29","toSide":"left"}
 	]
 }

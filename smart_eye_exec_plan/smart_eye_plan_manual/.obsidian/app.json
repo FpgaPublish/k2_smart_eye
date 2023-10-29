@@ -1,4 +1,5 @@
 {
   "autoPairBrackets": false,
-  "spellcheck": false
+  "spellcheck": false,
+  "autoPairMarkdown": false
 }
