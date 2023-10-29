@@ -15,9 +15,9 @@
               "state": {
                 "file": "计划手册.canvas",
                 "viewState": {
-                  "x": 582.2607054703349,
-                  "y": 640.7775560640061,
-                  "zoom": 1.1102230246251565e-16
+                  "x": 1298.6235681070948,
+                  "y": 603.9076195484488,
+                  "zoom": 0.5560547159526885
                 }
               }
             }
@@ -88,7 +88,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计划手册.canvas",
+                "file": "wiki的自动化维护.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +105,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计划手册.canvas",
+                "file": "wiki的自动化维护.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -128,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计划手册.canvas"
+                "file": "wiki的自动化维护.md"
               }
             }
           }
@@ -151,8 +151,10 @@
   },
   "active": "3b5f1a9a59880ecf",
   "lastOpenFiles": [
+    "未命名.canvas",
+    "计划手册.canvas",
+    "wiki的自动化维护.md",
     "算法开发平台.md",
-    "基础设计流程.md",
-    "计划手册.canvas"
+    "基础设计流程.md"
   ]
 }

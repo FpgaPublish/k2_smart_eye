@@ -1,5 +1,6 @@
 {
 	"nodes":[
+		{"id":"aa2250301e362f29","x":1098,"y":391,"width":400,"height":400,"type":"file","file":"wiki的自动化维护.md"},
 		{"type":"file","file":"基础设计流程.md","id":"0ad9ef741a2a8d77","x":561,"y":-66,"width":400,"height":400},
 		{"type":"text","text":"## 板级模块设计","id":"549fd8a17dfcc738","x":-220,"y":140,"width":250,"height":60},
 		{"type":"text","text":"# 计划与总结手册","id":"26590aa762ecb618","x":-255,"y":-40,"width":320,"height":60},
@@ -14,6 +15,7 @@
 		{"id":"de5658e24470d4ce","fromNode":"ae438f500dbed3c0","fromSide":"right","toNode":"0ad9ef741a2a8d77","toSide":"left"},
 		{"id":"dd98732cc1fc1de1","fromNode":"549fd8a17dfcc738","fromSide":"bottom","toNode":"530a16c9cd4115d8","toSide":"top"},
 		{"id":"aa22c60c0338b848","fromNode":"530a16c9cd4115d8","fromSide":"right","toNode":"b646fdcf954bd698","toSide":"left"},
-		{"id":"08dc79751522e956","fromNode":"b646fdcf954bd698","fromSide":"right","toNode":"8d37c0bd35310bac","toSide":"left"}
+		{"id":"08dc79751522e956","fromNode":"b646fdcf954bd698","fromSide":"right","toNode":"8d37c0bd35310bac","toSide":"left"},
+		{"id":"a9830c3764205f41","fromNode":"8d37c0bd35310bac","fromSide":"right","toNode":"aa2250301e362f29","toSide":"left"}
 	]
 }
