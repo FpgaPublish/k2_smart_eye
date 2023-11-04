@@ -55,7 +55,9 @@ MainWindow::MainWindow(QWidget *parent)
     // --------------------------------------------
     // cmd mode set
     u_cmd_blck = new cmd_blck;
-
+    // --------------------------------------------
+    // once blck
+    u_once_blck = new once_blck;
     // =====================================================
     // file connect
     u_file_mdle = new file_mdle;
@@ -63,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent)
             u_uvc_blck,&uvc_blck::update_file_path);
     connect(u_file_mdle,&file_mdle::update_trig,
             u_fpga_subs,&fpga_subs::update_file_path);
+    connect(u_file_mdle,&file_mdle::update_trig,
+            u_once_blck,&once_blck::update_file_path);
+
     u_file_mdle->m_get_path(); //must connect before this
     // =====================================================
     // info win
@@ -94,9 +99,6 @@ MainWindow::MainWindow(QWidget *parent)
     u_flow_blck = new flow_blck;
     connect(u_uvc_blck,&uvc_blck::bmp_trig,u_flow_blck,&flow_blck::m_bmp_in);
     connect(u_flow_blck,&flow_blck::bmp_udp_trig,u_udp_subs,&udp_subs::m_send_udp_bmp);
-
-
-
 
 }
 
@@ -244,5 +246,12 @@ void MainWindow::on_ui_flow_fpga_clicked()
 void MainWindow::on_actionbat_triggered()
 {
     u_cmd_blck->show();
+}
+
+
+void MainWindow::on_ui_once_solve_clicked()
+{
+    ui->ui_display->insertTab(3,u_once_blck,"once_blck");
+    ui->ui_display->setCurrentWidget(u_once_blck);
 }
 

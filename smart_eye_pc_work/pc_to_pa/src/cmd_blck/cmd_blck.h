@@ -22,6 +22,8 @@ private slots:
 
 private:
     Ui::cmd_blck *ui;
+public:
+    void run_bat_script(QString pns_bat);
 };
 
 #endif // CMD_BLCK_H

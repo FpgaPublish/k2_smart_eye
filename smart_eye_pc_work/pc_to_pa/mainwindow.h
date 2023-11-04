@@ -37,6 +37,7 @@ QT_END_NAMESPACE
 #include "./src/flow_blck/flow_blck.h"
 #include "./src/fpga_subs/fpga_subs.h"
 #include "./src/cmd_blck/cmd_blck.h"
+#include "./src/once_blck/once_blck.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -92,6 +93,8 @@ private slots:
 
     void on_actionbat_triggered();
 
+    void on_ui_once_solve_clicked();
+
 private:
     // --------------------------------------------
     // usv camera
@@ -108,6 +111,8 @@ private:
     // --------------------------------------------
     // cmd bat
     cmd_blck *u_cmd_blck;
-
+    // --------------------------------------------
+    // once blck
+    once_blck *u_once_blck;
 };
 #endif // MAINWINDOW_H

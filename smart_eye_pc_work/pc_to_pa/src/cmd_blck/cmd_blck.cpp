@@ -56,3 +56,9 @@ void cmd_blck::on_bat_run_clicked()
     cmd->kill();
 }
 
+void cmd_blck::run_bat_script(QString pns_bat)
+{
+    ui->bat_path->setText(pns_bat);
+    on_bat_run_clicked();
+}
+

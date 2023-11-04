@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
-    <height>328</height>
+    <width>811</width>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,6 +80,20 @@
        </item>
        <item>
         <widget class="QLineEdit" name="ui_fpga_file"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>F指令运行路径</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ui_cmd_file"/>
        </item>
       </layout>
      </item>

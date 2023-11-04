@@ -63,7 +63,7 @@ Q_DECLARE_METATYPE(SUdpPck)
 #define P_VIDEO_FIFO 0
 #define P_LOG_FILE   1
 #define P_FPGA_FILE  2
-
+#define P_CMD_PATH   3
 
 // =====================================================
 // public function name

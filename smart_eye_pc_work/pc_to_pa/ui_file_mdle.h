@@ -39,6 +39,9 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_7;
     QLineEdit *ui_fpga_file;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *label_8;
+    QLineEdit *ui_cmd_file;
     QHBoxLayout *horizontalLayout;
     QPushButton *ui_read_set;
     QPushButton *ui_write_set;
@@ -48,7 +51,7 @@ public:
     {
         if (file_mdle->objectName().isEmpty())
             file_mdle->setObjectName(QString::fromUtf8("file_mdle"));
-        file_mdle->resize(655, 328);
+        file_mdle->resize(811, 452);
         verticalLayout_2 = new QVBoxLayout(file_mdle);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout = new QVBoxLayout();
@@ -119,6 +122,21 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_9);
 
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        label_8 = new QLabel(file_mdle);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+
+        horizontalLayout_10->addWidget(label_8);
+
+        ui_cmd_file = new QLineEdit(file_mdle);
+        ui_cmd_file->setObjectName(QString::fromUtf8("ui_cmd_file"));
+
+        horizontalLayout_10->addWidget(ui_cmd_file);
+
+
+        verticalLayout->addLayout(horizontalLayout_10);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         ui_read_set = new QPushButton(file_mdle);
@@ -156,6 +174,7 @@ public:
         label->setText(QApplication::translate("file_mdle", "\346\221\204\345\203\217\345\244\264\346\225\260\346\215\256", nullptr));
         label_3->setText(QApplication::translate("file_mdle", "\346\227\245\345\277\227\346\226\207\344\273\266\345\220\215", nullptr));
         label_7->setText(QApplication::translate("file_mdle", "FPGA\351\205\215\347\275\256\346\226\207\344\273\266", nullptr));
+        label_8->setText(QApplication::translate("file_mdle", "F\346\214\207\344\273\244\350\277\220\350\241\214\350\267\257\345\276\204", nullptr));
         ui_read_set->setText(QApplication::translate("file_mdle", "\350\257\273\345\217\226", nullptr));
         ui_write_set->setText(QApplication::translate("file_mdle", "\345\206\231\345\205\245", nullptr));
         pushButton->setText(QApplication::translate("file_mdle", "\345\205\263\351\227\255", nullptr));
