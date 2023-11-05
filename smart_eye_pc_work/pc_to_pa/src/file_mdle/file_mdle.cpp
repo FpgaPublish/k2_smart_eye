@@ -62,6 +62,8 @@ void file_mdle::on_ui_write_set_clicked()
     l_env_path.replace(P_LOG_FILE, ui->ui_log_file->text());
     l_env_path.replace(P_FPGA_FILE, ui->ui_fpga_file->text());
     l_env_path.replace(P_CMD_PATH, ui->ui_cmd_file->text());
+    l_env_path.replace(P_CMD_DATA, ui->ui_cmd_data->text());
+
 
 
     QFile f(pns_ini);
@@ -83,6 +85,8 @@ void file_mdle::on_ui_read_set_clicked()
     ui->ui_log_file->setText(l_env_path[P_LOG_FILE]);
     ui->ui_fpga_file->setText(l_env_path[P_FPGA_FILE]);
     ui->ui_cmd_file->setText(l_env_path[P_CMD_PATH]);
+    ui->ui_cmd_data->setText(l_env_path[P_CMD_DATA]);
+
 }
 
 QList<QString> file_mdle::m_get_path()

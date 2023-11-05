@@ -2,7 +2,7 @@
 #include "ui_uvc_blck.h"
 
 #include <QDebug>
-
+#include <QThread>
 uvc_blck::uvc_blck(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uvc_blck)
@@ -10,6 +10,7 @@ uvc_blck::uvc_blck(QWidget *parent) :
     ui->setupUi(this);
     camera_init = 0;
     nb_imag_save = 0;
+    imag_save_cnt = 0;
     //read default device
     on_ui_read_clicked();
     //set dafult device
@@ -103,8 +104,11 @@ void uvc_blck::on_ui_read_clicked()
 void uvc_blck::on_ui_write_clicked()
 {
     camera->stop();
-    delete camera;
+    disconnect(vsd,SIGNAL(frame_trig(QVideoFrame))
+            ,this,SLOT(recv_video_frame(QVideoFrame)));
+    //delete camera;
     camera = new QCamera(l_device_name[ui->ui_device->currentIndex()].toUtf8(),this);
+    emit info_trig(0,CODE_UVC_INFO,"info","open new camera");
     //rate set
     QCameraViewfinderSettings set;
     set.setResolution(l_resolution_size[ui->ui_resolution->currentIndex()]);
@@ -115,12 +119,13 @@ void uvc_blck::on_ui_write_clicked()
     //camera->setCaptureMode(QCamera::CaptureVideo);
     camera->setViewfinder(ui->ui_display);
     //add video surface
-    delete vsd;
+//    delete vsd;
     vsd = new videosurface_driv(this);
     if(nb_imag_save > 0)
     {
         camera->setViewfinder(vsd);
     }
+    imag_save_cnt = 0;
     connect(vsd,SIGNAL(frame_trig(QVideoFrame))
             ,this,SLOT(recv_video_frame(QVideoFrame)),Qt::DirectConnection);
 
@@ -180,6 +185,7 @@ void uvc_blck::recv_video_frame(QVideoFrame cframe)
         //qDebug() << p_video_path+QString::number(nb_imag_save)+".bmp";
         video_imags.save(p_video_path+QString::number(nb_imag_save)+".bmp");
         emit bmp_trig(p_video_path+QString::number(nb_imag_save)+".bmp");
+        qDebug() << "write one bmp to ccamera fifo";
     }
     //clear this frame
     cframe.unmap();

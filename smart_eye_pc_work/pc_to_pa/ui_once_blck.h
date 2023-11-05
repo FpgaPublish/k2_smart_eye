@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLineEdit>
@@ -32,6 +33,7 @@ public:
     QGraphicsView *imag_in;
     QVBoxLayout *verticalLayout_3;
     QSpacerItem *verticalSpacer;
+    QComboBox *cmd_type;
     QSpinBox *delay_cnt;
     QSpacerItem *verticalSpacer_2;
     QVBoxLayout *verticalLayout;
@@ -71,6 +73,11 @@ public:
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer);
+
+        cmd_type = new QComboBox(once_blck);
+        cmd_type->setObjectName(QString::fromUtf8("cmd_type"));
+
+        verticalLayout_3->addWidget(cmd_type);
 
         delay_cnt = new QSpinBox(once_blck);
         delay_cnt->setObjectName(QString::fromUtf8("delay_cnt"));

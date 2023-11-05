@@ -116,10 +116,10 @@ void udp_subs::m_send_udp_bmp(QString pns_bmp)
     QImage bmp(pns_bmp);
     bmp = bmp.convertToFormat(QImage::Format_RGB888);
     uchar *bits = bmp.bits();
-    for(int i = 0; i < bmp.height(); i++)
-    {
-        qDebug() << bits[i];
-    }
+//    for(int i = 0; i < bmp.height(); i++)
+//    {
+//        //qDebug() << bits[i];
+//    }
     //imag info
     int imag_h = bmp.height();
     int imag_w = bmp.width();
@@ -194,14 +194,14 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
             i ++;
         }
 
-        qDebug() << l_dat_hex;
+        //qDebug() << l_dat_hex;
         // --------------------------------------------
         // send data
         pkg_send.pkg_code = CODE_FPGA_SET;
         pkg_send.pkg_len  = l_dat_hex.size() * 4;
         pkg_send.pkg_wid  = 1;
         pkg_send.pkg_xor  = 0;
-        qDebug() << l_dat_hex.size();
+        //qDebug() << l_dat_hex.size();
         pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
         for(int i = 0; i < l_dat_hex.size(); i++)
         {

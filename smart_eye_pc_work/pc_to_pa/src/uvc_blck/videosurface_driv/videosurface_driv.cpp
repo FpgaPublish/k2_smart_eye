@@ -17,8 +17,8 @@ bool videosurface_driv::present(const QVideoFrame &frame)
 {
     if (frame.isValid())
     {
-            QVideoFrame cloneFrame(frame);                                      //每一帧视频都会进入present中，内部机制
-            emit frame_trig(cloneFrame);                                    //直接把视频帧发送出去
+            QVideoFrame cloneFrame(frame);                                 //in present
+            emit frame_trig(cloneFrame);                                    //emit frame
             return true;
     }
     stop();

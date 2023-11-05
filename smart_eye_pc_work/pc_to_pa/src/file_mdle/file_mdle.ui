@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>452</height>
+    <width>849</width>
+    <height>512</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -88,12 +88,26 @@
        <item>
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>F指令运行路径</string>
+          <string>指令运行路径</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="ui_cmd_file"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>指令运行数据</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ui_cmd_data"/>
        </item>
       </layout>
      </item>

@@ -42,6 +42,9 @@
         </spacer>
        </item>
        <item>
+        <widget class="QComboBox" name="cmd_type"/>
+       </item>
+       <item>
         <widget class="QSpinBox" name="delay_cnt"/>
        </item>
        <item>
