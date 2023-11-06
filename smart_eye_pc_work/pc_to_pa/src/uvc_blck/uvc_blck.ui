@@ -15,7 +15,11 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="6,1,1">
    <item>
-    <widget class="QVideoWidget" name="ui_display" native="true"/>
+    <widget class="QVideoWidget" name="ui_display" native="true">
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

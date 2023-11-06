@@ -47,6 +47,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         ui_display = new QVideoWidget(uvc_blck);
         ui_display->setObjectName(QString::fromUtf8("ui_display"));
+        ui_display->setContextMenuPolicy(Qt::CustomContextMenu);
 
         verticalLayout->addWidget(ui_display);
 

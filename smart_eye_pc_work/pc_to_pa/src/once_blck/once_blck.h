@@ -28,6 +28,7 @@ private:
 public slots:
     //update file path
     void update_file_path(QList<QString>);
+    void run_bat_script(int,QString);
 private:
     QString cmd_fifo_path;
     QString cmd_type_path;

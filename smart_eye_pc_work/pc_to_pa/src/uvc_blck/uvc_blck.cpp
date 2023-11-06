@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QThread>
+#include <QMenu>
 uvc_blck::uvc_blck(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uvc_blck)
@@ -14,7 +15,6 @@ uvc_blck::uvc_blck(QWidget *parent) :
     //read default device
     on_ui_read_clicked();
     //set dafult device
-
     F_SETWIN
 }
 
@@ -51,12 +51,15 @@ void uvc_blck::on_ui_read_clicked()
     //create camera
     if(camera_init == 0)
     {
-        ui->ui_device->setCurrentIndex(last_dev - 1);
+        ui->ui_device->setCurrentIndex(0),//last_dev - 1);//default USB camera
         camera = new QCamera(l_device_name[ui->ui_device->currentIndex()].toUtf8(),this);
         camera_init = 1;
         //camera mode set
         camera->setCaptureMode(QCamera::CaptureStillImage);
         //camera->setCaptureMode(QCamera::CaptureVideo);
+        image_capture = new QCameraImageCapture(camera);
+        connect(image_capture,SIGNAL(imageCaptured(int,QImage)),this,SLOT(image_capture_save(int,QImage)));
+        //
         camera->setViewfinder(ui->ui_display);
         //add video surface
         vsd = new videosurface_driv(this);
@@ -106,6 +109,7 @@ void uvc_blck::on_ui_write_clicked()
     camera->stop();
     disconnect(vsd,SIGNAL(frame_trig(QVideoFrame))
             ,this,SLOT(recv_video_frame(QVideoFrame)));
+    QThread::sleep(1);
     //delete camera;
     camera = new QCamera(l_device_name[ui->ui_device->currentIndex()].toUtf8(),this);
     emit info_trig(0,CODE_UVC_INFO,"info","open new camera");
@@ -116,6 +120,10 @@ void uvc_blck::on_ui_write_clicked()
     camera->setViewfinderSettings(set);
     //camera mode set
     camera->setCaptureMode(QCamera::CaptureStillImage);
+    //image capture
+    image_capture = new QCameraImageCapture(camera);
+    connect(image_capture,SIGNAL(imageCaptured(int,QImage)),this,SLOT(image_capture_save(int,QImage)));
+
     //camera->setCaptureMode(QCamera::CaptureVideo);
     camera->setViewfinder(ui->ui_display);
     //add video surface
@@ -162,7 +170,7 @@ void uvc_blck::m_open_camera_stream(bool flag,int max_imag)
     {
         nb_imag_save = 0;
     }
-    on_ui_write_clicked();
+    //on_ui_write_clicked();
 }
 
 void uvc_blck::update_file_path(QList<QString> l_file)
@@ -205,5 +213,32 @@ void uvc_blck::recv_video_frame(QVideoFrame cframe)
 void uvc_blck::on_ui_close_clicked()
 {
     close();
+}
+
+
+void uvc_blck::on_ui_display_customContextMenuRequested(const QPoint &pos)
+{
+    qDebug() << pos;
+    QMenu *menu = new QMenu(this);
+    QAction * action = new QAction;
+    action->setText("hello_world");
+    connect(action,SIGNAL(triggered(bool)),this,SLOT(run_bat_start()));
+    menu->addAction(action);
+    menu->exec(QCursor::pos());
+}
+
+void uvc_blck::run_bat_start()
+{
+    int n_bat = 0;
+    QString pns_bmp = p_video_path+"hello.bmp";
+    image_capture->capture();
+    emit run_bat_trig(n_bat,pns_bmp);
+}
+
+void uvc_blck::image_capture_save(int n,QImage img)
+{
+    qDebug() <<"image_capture_save arg1 = " << n;
+    QString pns_bmp = p_video_path+"hello.bmp";
+    img.save(pns_bmp);
 }
 

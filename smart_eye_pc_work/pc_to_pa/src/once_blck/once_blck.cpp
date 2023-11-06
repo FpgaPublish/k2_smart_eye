@@ -6,6 +6,7 @@
 #include <QDataStream>
 #include <QDebug>
 #include <QApplication>
+#include <QThread>
 once_blck::once_blck(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::once_blck)
@@ -55,10 +56,6 @@ void once_blck::on_solve_start_clicked()
     {
         f_out.remove();
     }
-    // run cmd
-    QString cmd_run = cmd_type_path + ui->cmd_type->currentText();
-    qDebug() << cmd_run;
-    u_cmd_blck->run_bat_script(cmd_run);
     //update param
     QFile f_param(cmd_para_path);
     f_param.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -67,6 +64,10 @@ void once_blck::on_solve_start_clicked()
     //qDebug() << cmd_fifo_path;
     f_param.write(cmd_fifo_path.toUtf8());
     f_param.close();
+    // run cmd
+    QString cmd_run = cmd_type_path + ui->cmd_type->currentText();
+    qDebug() << cmd_run;
+    u_cmd_blck->run_bat_script(cmd_run);
 
     //wait bat over
     ui->delay_cnt->setValue(0);
@@ -80,7 +81,7 @@ void once_blck::on_solve_start_clicked()
         i++;
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
-
+    QThread::sleep(1);
     //read result
     ui->file_out->setText(pns_out);
     QImage img2;
@@ -100,7 +101,14 @@ void once_blck::update_file_path(QList<QString> l_file)
 {
     cmd_type_path   = l_file[P_CMD_PATH];
     cmd_fifo_path   = l_file[P_CMD_DATA];
+}
 
+void once_blck::run_bat_script(int n_bat, QString pns_bmp)
+{
+    ui->cmd_type->setCurrentIndex(n_bat);
+    ui->file_in->setText(pns_bmp);
+    on_solve_start_clicked();
+    this->show();
 }
 
 

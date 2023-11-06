@@ -58,6 +58,13 @@ MainWindow::MainWindow(QWidget *parent)
     // --------------------------------------------
     // once blck
     u_once_blck = new once_blck;
+    connect(u_uvc_blck,&uvc_blck::run_bat_trig,
+            u_once_blck,&once_blck::run_bat_script);
+//    connect(u_uvc_blck,SIGNAL(run_bat_trig(int,QString)),
+//            u_once_blck,SLOT(run_bat_script(int,QString)));
+//    connect(u_uvc_blck,&uvc_blck::run_bat_trig,
+//            this,&MainWindow::on_ui_once_solve_clicked);
+
     // =====================================================
     // file connect
     u_file_mdle = new file_mdle;

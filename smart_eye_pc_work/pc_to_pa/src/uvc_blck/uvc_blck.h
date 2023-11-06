@@ -6,6 +6,8 @@
 #include <QList>
 #include "../MACRO.h"
 #include "./videosurface_driv/videosurface_driv.h"
+#include "../once_blck/once_blck.h"
+#include <QCameraImageCapture>
 namespace Ui {
 class uvc_blck;
 }
@@ -48,6 +50,8 @@ private slots:
 
     void on_ui_close_clicked();
 
+    void on_ui_display_customContextMenuRequested(const QPoint &pos);
+
 private:
     QImage video_imags;
     int    nb_imag_save;
@@ -57,6 +61,15 @@ private:
 signals:
     //add imag update trig
     void bmp_trig(QString );
+    //add bat run script
+    void run_bat_trig(int,QString);
+private slots:
+    void run_bat_start();
+    void image_capture_save(int,QImage);
+private:
+    QCameraImageCapture *image_capture;
+
+
 };
 
 #endif // UVC_BLCK_H
