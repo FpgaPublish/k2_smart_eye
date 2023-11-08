@@ -8,9 +8,10 @@
 		{"type":"text","text":"## 算法开发模块","id":"530a16c9cd4115d8","x":-220,"y":560,"width":250,"height":60},
 		{"type":"text","text":"### 设计目标\n- [x] 完成算法数据的生成\n- [x] 完成普通文件的共享\n- [x] 完成自动化仿真\n- [x] 验证一个已有的算法模块\n- [x] 完成算法开发流程的建立\n- [x] 完成算法研发的标准","id":"b646fdcf954bd698","x":160,"y":474,"width":305,"height":232},
 		{"type":"file","file":"算法开发平台.md","id":"8d37c0bd35310bac","x":561,"y":390,"width":400,"height":400},
-		{"id":"ba77830d2344c12e","x":-224,"y":985,"width":250,"height":60,"type":"text","text":"## 界面开发模块"},
-		{"id":"89d76ebd8993712f","x":160,"y":922,"width":328,"height":187,"type":"text","text":"### 设计目标\n- [x] 完成bat指令的相应\n- [x] 实现bat指令的执行\n- [x] 完成PA和PL的数据闭环\n- [x] 测试对应的指令界面的执行效果\n- [ ] 开发一个自动化日志的执行脚本"},
-		{"id":"eba639b46d8f7327","x":561,"y":818,"width":400,"height":432,"type":"file","file":"界面开发框架.md"}
+		{"type":"text","text":"## 界面开发模块","id":"ba77830d2344c12e","x":-224,"y":985,"width":250,"height":60},
+		{"type":"text","text":"### 设计目标\n- [x] 完成bat指令的相应\n- [x] 实现bat指令的执行\n- [x] 完成PA和PL的数据闭环\n- [x] 测试对应的指令界面的执行效果\n- [x] 开发一个自动化日志的执行脚本","id":"89d76ebd8993712f","x":160,"y":922,"width":328,"height":187},
+		{"type":"file","file":"界面开发框架.md","id":"eba639b46d8f7327","x":561,"y":818,"width":400,"height":432},
+		{"id":"1d4a916efd927799","x":-226,"y":1392,"width":250,"height":60,"type":"text","text":"整机功能开发"}
 	],
 	"edges":[
 		{"id":"8a5d58e512c4d687","fromNode":"26590aa762ecb618","fromSide":"bottom","toNode":"549fd8a17dfcc738","toSide":"top"},
@@ -22,6 +23,7 @@
 		{"id":"a9830c3764205f41","fromNode":"8d37c0bd35310bac","fromSide":"right","toNode":"aa2250301e362f29","toSide":"left"},
 		{"id":"bc2c49a79f56be99","fromNode":"530a16c9cd4115d8","fromSide":"bottom","toNode":"ba77830d2344c12e","toSide":"top"},
 		{"id":"f8167685cc48a29f","fromNode":"ba77830d2344c12e","fromSide":"right","toNode":"89d76ebd8993712f","toSide":"left"},
-		{"id":"d7df98e4d7bbe1bd","fromNode":"89d76ebd8993712f","fromSide":"right","toNode":"eba639b46d8f7327","toSide":"left"}
+		{"id":"d7df98e4d7bbe1bd","fromNode":"89d76ebd8993712f","fromSide":"right","toNode":"eba639b46d8f7327","toSide":"left"},
+		{"id":"49ab1d3cc2cb5dd0","fromNode":"ba77830d2344c12e","fromSide":"bottom","toNode":"1d4a916efd927799","toSide":"top"}
 	]
 }
