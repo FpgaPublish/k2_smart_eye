@@ -4,20 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "107efd51eb9ad8dc",
+        "id": "f4feb579642acf6e",
         "type": "tabs",
         "children": [
           {
-            "id": "2870976e359473eb",
+            "id": "dfeb5c0cf6ed1571",
             "type": "leaf",
             "state": {
               "type": "canvas",
               "state": {
                 "file": "计划手册.canvas",
                 "viewState": {
-                  "x": 636.9546728519613,
-                  "y": 672.7852476111624,
-                  "zoom": 0.4
+                  "x": 354,
+                  "y": 893.8407067366448,
+                  "zoom": 0
                 }
               }
             }
@@ -149,9 +149,11 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2870976e359473eb",
+  "active": "dfeb5c0cf6ed1571",
   "lastOpenFiles": [
+    "通信设计标准.md",
     "计划手册.canvas",
+    "wiki仓库维护.md",
     "板间通信模块的设计.md"
   ]
 }
