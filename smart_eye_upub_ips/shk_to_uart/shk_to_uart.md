@@ -21,7 +21,6 @@
 //         * 
 // Revision: 0.01 
 // Revision 0.01 - File Created
-//          1.1  - fix read data j is used as i
 // Additional Comments:
 // 
 // *******************************************************************************
@@ -85,9 +84,7 @@ NB_BAUD_NUMB:  200,300
 NB_BAUD_NUMB:  300,400
 NB_BAUD_NUMB:  400,500
 NB_BAUD_NUMB:  500,600
-NB_UART_BITS:  0,1000
-
-
+NB_UART_BYTE:  0,1000
 ```
            
  <details> 
@@ -105,7 +102,7 @@ begin
 end 
 endfunction
 localparam WD_BAUD_NUMB = LOG2(NB_BAUD_NUMB);
-localparam NB_UART_BITS = WD_SHK_ADDR + 3;
+localparam NB_UART_BYTE = WD_SHK_ADDR + 2;
 
 //========================================================
 //localparam to converation and calculate
@@ -169,7 +166,7 @@ begin
     begin
         r_write_addr_busy <= 1'b1;  //
     end
-    else if(w_shk_wr_msync_pos)
+    else
     begin
         r_write_addr_busy <= 1'b0;
     end
@@ -214,13 +211,13 @@ begin
     end
     else if(r_uart_wr_cunt >= NB_BAUD_NUMB) //reset
     begin
-        if(r_uart_wr_numb == NB_UART_BITS - 1'b1)
+        if(r_uart_wr_numb == NB_UART_BYTE - 1'b1)
         begin
             r_uart_wr_cunt <= 1'b0;
         end
         else 
         begin
-            r_uart_wr_cunt <= 1'b1;
+            r_uart_wr_cunt <= 1'b0;
         end
     end
     else if(r_uart_wr_cunt != 0) //not stop
@@ -247,49 +244,45 @@ begin
 end
 // ----------------------------------------------------------
 // uart driver
+integer i;
 always@(posedge i_sys_clk)
 begin
     if(!i_sys_resetn) //system reset
     begin
-        r_port_uart_mrx <= 1'b1; //
+        r_port_uart_mrx <= 1'b0; //
     end
     else if(w_uart_wr_busy) //
     begin
         if(r_write_addr_busy)
         begin
-            if(r_uart_wr_numb == 0)
-            begin
-                r_port_uart_mrx <= 1'b0;
-            end
-            else if(r_uart_wr_numb == NB_UART_BITS-1 || r_uart_wr_numb == NB_UART_BITS-2)
-            begin
-                r_port_uart_mrx <= 1'b1;
-            end
-            else
-            begin
-                r_port_uart_mrx <= r_shk_wr_maddr[WD_SHK_ADDR - r_uart_wr_numb];
+            // case(r_uart_wr_numb)
+            //     0: r_port_uart_mrx <= 1'b0;  //
+            //     1: r_port_uart_mrx <= r_shk_wr_maddr[0]; 
+            // endcase
+            for(i = 0; i < NB_UART_BYTE; i = i + 1)
+            begin:FOR_NB_UART_BYTE1
+                case(i)
+                    0: r_port_uart_mrx <= 1'b0;
+                    NB_UART_BYTE-1,NB_UART_BYTE-2: r_port_uart_mrx <= 1'b1;
+                    default: r_port_uart_mrx <= r_shk_wr_maddr[WD_SHK_ADDR - i];
+                endcase
             end
         end
         else 
         begin
-            if(r_uart_wr_numb == 0)
-            begin
-                r_port_uart_mrx <= 1'b0;
-            end
-            else if(r_uart_wr_numb == NB_UART_BITS-1 || r_uart_wr_numb == NB_UART_BITS-2)
-            begin
-                r_port_uart_mrx <= 1'b1;
-            end
-            else
-            begin
-                r_port_uart_mrx <= r_shk_wr_mdata[WD_SHK_ADDR - r_uart_wr_numb];
-                
+            for(i = 0; i < NB_UART_BYTE; i = i + 1)
+            begin:FOR_NB_UART_BYTE2
+                case(i)
+                    0: r_port_uart_mrx <= 1'b0;
+                    NB_UART_BYTE-1,NB_UART_BYTE-2: r_port_uart_mrx <= 1'b1;
+                    default: r_port_uart_mrx <= r_shk_wr_mdata[WD_SHK_DATA - i];
+                endcase
             end
         end
     end
     else 
     begin
-        r_port_uart_mrx <= 1'b1;
+        r_port_uart_mrx <= 1'b0;
     end
 end
 assign s_port_uart_mrx = r_port_uart_mrx;
@@ -331,7 +324,7 @@ begin
     end
     else if(r_uart_rd_cunt >= NB_BAUD_NUMB)
     begin
-        r_uart_rd_cunt <= 1'b1;
+        r_uart_rd_cunt <= 1'b0;
     end
     else 
     begin
@@ -363,7 +356,7 @@ begin
     begin
         r_uart_rd_busy <= 1'b1;  //
     end
-    else if(r_uart_rd_cunt >= NB_BAUD_NUMB  && r_uart_rd_numb >= NB_UART_BITS - 1'b1)
+    else if(r_uart_rd_cunt >= NB_BAUD_NUMB && r_uart_rd_numb >= NB_BAUD_RATE - 1'b1)
     begin
         r_uart_rd_busy <= 1'b0;
     end
@@ -379,9 +372,9 @@ generate genvar j;
             begin
                 r_uart_rd_data[j] <= 1'b0; //
             end
-            else if(r_uart_rd_numb == WD_SHK_DATA - j && r_uart_rd_cunt >= NB_BAUD_NUMB / 2) //1.1  - fix read data j is used as i
+            else if(r_uart_rd_numb == i + 1) //
             begin
-                r_uart_rd_data[j] <= r_port_uart_mtx;  //
+                r_uart_rd_data[WD_SHK_DATA-i-1] <= r_port_uart_mtx;  //
             end
         end
     end

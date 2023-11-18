@@ -8,7 +8,8 @@
 		{"id":"b74382ededc8eed7","type":"text","text":"## 板间通信设计","x":-220,"y":480,"width":250,"height":60},
 		{"id":"bc512639b1044aff","type":"text","text":"### 设计目标\n- [x] 一个简易的10线SPI模型\n- [x] 主机控制模块\n- [x] 读取数据模块\n- [ ] 写入数据模块\n- [ ] 模块级仿真环境\n- [ ] 板级验证效果\n- [ ] 通信模块设计自动化","x":160,"y":360,"width":280,"height":300},
 		{"id":"f38e65e16cb2d0d8","type":"file","file":"板间通信模块的设计.md","x":620,"y":310,"width":400,"height":400},
-		{"id":"f3bfda10d2006dbd","x":160,"y":780,"width":250,"height":194,"type":"text","text":"设计目标\n- [x] 开始串口通信的设计\n- [ ] 优化目前的设计时间\n- [ ] 降低重复设计的内容"}
+		{"id":"f3bfda10d2006dbd","type":"text","text":"设计目标\n- [x] 开始串口通信的设计\n- [x] 优化目前的设计时间\n- [ ] 降低重复设计的内容\n- [ ] 完成代码的快速验证","x":160,"y":780,"width":250,"height":194},
+		{"id":"d78253da844d7749","x":620,"y":774,"width":400,"height":400,"type":"file","file":"SHK通用模块设计.md"}
 	],
 	"edges":[
 		{"id":"8a5d58e512c4d687","fromNode":"26590aa762ecb618","fromSide":"bottom","toNode":"549fd8a17dfcc738","toSide":"top"},
@@ -18,6 +19,7 @@
 		{"id":"ebbfb0cd1dd0af7f","fromNode":"bc512639b1044aff","fromSide":"right","toNode":"f38e65e16cb2d0d8","toSide":"left"},
 		{"id":"8ad041cc6e8935b0","fromNode":"b74382ededc8eed7","fromSide":"left","toNode":"85ebcbee28e85dc9","toSide":"right"},
 		{"id":"24a3c2d091c5de65","fromNode":"f38e65e16cb2d0d8","fromSide":"right","toNode":"5993581e264bba5c","toSide":"left"},
-		{"id":"9c2faca10481f351","fromNode":"b74382ededc8eed7","fromSide":"right","toNode":"f3bfda10d2006dbd","toSide":"left"}
+		{"id":"9c2faca10481f351","fromNode":"b74382ededc8eed7","fromSide":"right","toNode":"f3bfda10d2006dbd","toSide":"left"},
+		{"id":"4e2fe7380a4b3739","fromNode":"f3bfda10d2006dbd","fromSide":"right","toNode":"d78253da844d7749","toSide":"left"}
 	]
 }

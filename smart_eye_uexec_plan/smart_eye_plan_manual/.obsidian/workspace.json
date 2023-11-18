@@ -15,9 +15,9 @@
               "state": {
                 "file": "计划手册.canvas",
                 "viewState": {
-                  "x": 354,
-                  "y": 893.8407067366448,
-                  "zoom": 0
+                  "x": 664.1514153244815,
+                  "y": 992.657084439809,
+                  "zoom": -0.40000000000000013
                 }
               }
             }
@@ -72,7 +72,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 232.5
   },
   "right": {
     "id": "733c15b936104b83",
@@ -149,8 +149,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "dfeb5c0cf6ed1571",
+  "active": "be2c1fbe6d348872",
   "lastOpenFiles": [
+    "SHK通用模块设计.md",
     "通信设计标准.md",
     "计划手册.canvas",
     "wiki仓库维护.md",
