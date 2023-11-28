@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"142fb1d8f9c57740","x":-777,"y":1224,"width":400,"height":400,"type":"file","file":"设计动力.md"},
+		{"type":"file","file":"设计动力.md","id":"142fb1d8f9c57740","x":-777,"y":1224,"width":400,"height":400},
 		{"type":"file","file":"wiki的自动化维护.md","id":"aa2250301e362f29","x":1098,"y":391,"width":400,"height":400},
 		{"type":"file","file":"基础设计流程.md","id":"0ad9ef741a2a8d77","x":561,"y":-66,"width":400,"height":400},
 		{"type":"text","text":"## 板级模块设计","id":"549fd8a17dfcc738","x":-220,"y":140,"width":250,"height":60},

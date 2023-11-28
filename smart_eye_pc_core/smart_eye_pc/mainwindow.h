@@ -95,6 +95,12 @@ private slots:
 
     void on_ui_once_solve_clicked();
 
+    void on_ui_flow_fpga_2_clicked();
+
+    void on_ui_flow_fpga_3_clicked();
+
+    void on_ui_flow_fpga_4_clicked();
+
 private:
     // --------------------------------------------
     // usv camera
@@ -108,6 +114,10 @@ private:
     // --------------------------------------------
     // fpga set
     fpga_subs *u_fpga_subs;
+    fpga_subs *u_fpga_subs2;
+    fpga_subs *u_fpga_subs3;
+    fpga_subs *u_fpga_subs4;
+
     // --------------------------------------------
     // cmd bat
     cmd_blck *u_cmd_blck;

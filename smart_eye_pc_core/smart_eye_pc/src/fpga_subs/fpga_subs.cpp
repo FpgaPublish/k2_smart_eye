@@ -4,7 +4,7 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QTableWidgetItem>
-fpga_subs::fpga_subs(QWidget *parent) :
+fpga_subs::fpga_subs(QWidget *parent, int dev_numb) :
     QWidget(parent),
     ui(new Ui::fpga_subs)
 {
@@ -23,6 +23,25 @@ fpga_subs::fpga_subs(QWidget *parent) :
         table->setVerticalHeaderLabels(column_lab);
     }
 
+    for(int j = 0; j < row; j++)
+    {
+        switch(j)
+        {
+        case 0: l_fpga_info.append("[0]cmd info\n[1]ps info\n[2]pl info\n[3]pa info"); break;
+        default: l_fpga_info.append(" "); break;
+        }
+
+    }
+
+    for(int i = 0; i <row;i++)
+    {
+        //table->item(i,j)->setText(l_fpga_set[i*4+j]);
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setText(l_fpga_info[i]);
+        table->setItem(i,column,item);
+        //delete item;
+    }
+    dev_numb_tmp = dev_numb;
     F_SETWIN
 }
 
@@ -41,7 +60,7 @@ void fpga_subs::update_file_path(QList<QString> p_list)
 void fpga_subs::on_ui_rd_param_clicked()
 {
     QString pns_ini;
-    pns_ini = p_fpga_file + "fpga_ini.dat";
+    pns_ini = p_fpga_file + "fpga_ini" + QString::number(dev_numb_tmp) +".dat";
     QFile f(pns_ini);
     QFileInfo fi(pns_ini);
 
@@ -109,7 +128,7 @@ void fpga_subs::on_ui_wr_param_clicked()
     }
     //write file
     QString pns_ini;
-    pns_ini = p_fpga_file + "fpga_ini.dat";
+    pns_ini = p_fpga_file + "fpga_ini" + QString::number(dev_numb_tmp) +".dat";
     QFile f(pns_ini);
     f.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream f_out(&f);

@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../src/uvc_blck/uvc_blck.h"
+#include "../../../smart_eye_pc_core/smart_eye_pc/src/uvc_blck/uvc_blck.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>

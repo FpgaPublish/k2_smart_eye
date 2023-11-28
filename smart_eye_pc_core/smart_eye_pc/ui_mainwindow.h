@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -53,6 +54,10 @@ public:
     QProgressBar *ui_uvc_spd;
     QWidget *ui_flow_load;
     QPushButton *ui_flow_ctrl;
+    QGroupBox *groupBox;
+    QPushButton *ui_flow_fpga_4;
+    QPushButton *ui_flow_fpga_3;
+    QPushButton *ui_flow_fpga_2;
     QPushButton *ui_flow_fpga;
     QWidget *ui_flow_solve;
     QPushButton *ui_time_solve;
@@ -161,10 +166,22 @@ public:
         ui_flow_load->setGeometry(QRect(0, 0, 218, 300));
         ui_flow_ctrl = new QPushButton(ui_flow_load);
         ui_flow_ctrl->setObjectName(QString::fromUtf8("ui_flow_ctrl"));
-        ui_flow_ctrl->setGeometry(QRect(20, 50, 89, 24));
-        ui_flow_fpga = new QPushButton(ui_flow_load);
+        ui_flow_ctrl->setGeometry(QRect(40, 10, 89, 24));
+        groupBox = new QGroupBox(ui_flow_load);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(10, 50, 171, 181));
+        ui_flow_fpga_4 = new QPushButton(groupBox);
+        ui_flow_fpga_4->setObjectName(QString::fromUtf8("ui_flow_fpga_4"));
+        ui_flow_fpga_4->setGeometry(QRect(30, 140, 89, 24));
+        ui_flow_fpga_3 = new QPushButton(groupBox);
+        ui_flow_fpga_3->setObjectName(QString::fromUtf8("ui_flow_fpga_3"));
+        ui_flow_fpga_3->setGeometry(QRect(30, 110, 89, 24));
+        ui_flow_fpga_2 = new QPushButton(groupBox);
+        ui_flow_fpga_2->setObjectName(QString::fromUtf8("ui_flow_fpga_2"));
+        ui_flow_fpga_2->setGeometry(QRect(30, 70, 89, 24));
+        ui_flow_fpga = new QPushButton(groupBox);
         ui_flow_fpga->setObjectName(QString::fromUtf8("ui_flow_fpga"));
-        ui_flow_fpga->setGeometry(QRect(20, 100, 89, 24));
+        ui_flow_fpga->setGeometry(QRect(30, 30, 89, 24));
         ui_flow->addItem(ui_flow_load, QString::fromUtf8("\346\225\260\346\215\256\345\212\240\350\275\275"));
         ui_flow_solve = new QWidget();
         ui_flow_solve->setObjectName(QString::fromUtf8("ui_flow_solve"));
@@ -207,7 +224,7 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         ui_display->addTab(tab_2, QString());
 
-        ui_show_2->addWidget(ui_display, 2, 0, 1, 1);
+        ui_show_2->addWidget(ui_display, 0, 0, 1, 1);
 
 
         ui_show_1->addLayout(ui_show_2);
@@ -294,7 +311,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        ui_flow->setCurrentIndex(2);
+        ui_flow->setCurrentIndex(1);
         ui_display->setCurrentIndex(0);
         tab_console->setCurrentIndex(0);
 
@@ -315,7 +332,11 @@ public:
         ui_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247\351\200\232\344\277\241", nullptr));
         ui_flow->setItemText(ui_flow->indexOf(ui_flow_cnt), QApplication::translate("MainWindow", "\351\200\232\344\277\241\345\215\217\350\256\256", nullptr));
         ui_flow_ctrl->setText(QApplication::translate("MainWindow", "\346\265\201\347\250\213\347\256\241\347\220\206", nullptr));
-        ui_flow_fpga->setText(QApplication::translate("MainWindow", "FPGA\351\205\215\347\275\256", nullptr));
+        groupBox->setTitle(QApplication::translate("MainWindow", "FPGA", nullptr));
+        ui_flow_fpga_4->setText(QApplication::translate("MainWindow", "X7\351\205\215\347\275\256", nullptr));
+        ui_flow_fpga_3->setText(QApplication::translate("MainWindow", "K7\351\205\215\347\275\256", nullptr));
+        ui_flow_fpga_2->setText(QApplication::translate("MainWindow", "ZY7\351\205\215\347\275\256", nullptr));
+        ui_flow_fpga->setText(QApplication::translate("MainWindow", "ZU2\351\205\215\347\275\256", nullptr));
         ui_flow->setItemText(ui_flow->indexOf(ui_flow_load), QApplication::translate("MainWindow", "\346\225\260\346\215\256\345\212\240\350\275\275", nullptr));
         ui_time_solve->setText(QApplication::translate("MainWindow", "\345\256\232\346\227\266\345\244\204\347\220\206", nullptr));
         ui_once_solve->setText(QApplication::translate("MainWindow", "\345\215\225\346\254\241\345\244\204\347\220\206", nullptr));

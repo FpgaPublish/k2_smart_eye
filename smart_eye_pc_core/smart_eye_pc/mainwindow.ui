@@ -48,7 +48,7 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="ui_flow_cnt">
              <property name="geometry">
@@ -128,8 +128,8 @@
              <widget class="QPushButton" name="ui_flow_ctrl">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>50</y>
+                <x>40</x>
+                <y>10</y>
                 <width>89</width>
                 <height>24</height>
                </rect>
@@ -138,18 +138,70 @@
                <string>流程管理</string>
               </property>
              </widget>
-             <widget class="QPushButton" name="ui_flow_fpga">
+             <widget class="QGroupBox" name="groupBox">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>100</y>
-                <width>89</width>
-                <height>24</height>
+                <x>10</x>
+                <y>50</y>
+                <width>171</width>
+                <height>181</height>
                </rect>
               </property>
-              <property name="text">
-               <string>FPGA配置</string>
+              <property name="title">
+               <string>FPGA</string>
               </property>
+              <widget class="QPushButton" name="ui_flow_fpga_4">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>140</y>
+                 <width>89</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>X7配置</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="ui_flow_fpga_3">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>110</y>
+                 <width>89</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>K7配置</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="ui_flow_fpga_2">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>70</y>
+                 <width>89</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>ZY7配置</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="ui_flow_fpga">
+               <property name="geometry">
+                <rect>
+                 <x>30</x>
+                 <y>30</y>
+                 <width>89</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>ZU2配置</string>
+               </property>
+              </widget>
              </widget>
             </widget>
             <widget class="QWidget" name="ui_flow_solve">
@@ -240,7 +292,7 @@
            <layout class="QVBoxLayout" name="ui_show_1">
             <item>
              <layout class="QGridLayout" name="ui_show_2">
-              <item row="2" column="0">
+              <item row="0" column="0">
                <widget class="QTabWidget" name="ui_display">
                 <property name="currentIndex">
                  <number>0</number>

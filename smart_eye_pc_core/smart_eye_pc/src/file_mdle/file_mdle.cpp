@@ -56,14 +56,24 @@ file_mdle::~file_mdle()
     delete ui;
 }
 
+void file_mdle::on_ui_write_reset_clicked()
+{
+    l_env_path.replace(P_VIDEO_FIFO, QApplication::applicationDirPath() + "/camera_fifo/");
+    l_env_path.replace(P_LOG_FILE,   QApplication::applicationDirPath() + "/log_file/");
+    l_env_path.replace(P_FPGA_FILE,  QApplication::applicationDirPath() + "/fpga_file/");
+    l_env_path.replace(P_CMD_PATH,   QApplication::applicationDirPath() + "/user_bat/");
+    l_env_path.replace(P_CMD_DATA,   QApplication::applicationDirPath() + "/cmd_data/");
+    on_ui_read_set_clicked();
+    on_ui_write_set_clicked();
+
+}
 void file_mdle::on_ui_write_set_clicked()
 {
     l_env_path.replace(P_VIDEO_FIFO, ui->ui_dir_camera->text());
-    l_env_path.replace(P_LOG_FILE, ui->ui_log_file->text());
-    l_env_path.replace(P_FPGA_FILE, ui->ui_fpga_file->text());
-    l_env_path.replace(P_CMD_PATH, ui->ui_cmd_file->text());
-    l_env_path.replace(P_CMD_DATA, ui->ui_cmd_data->text());
-
+    l_env_path.replace(P_LOG_FILE,   ui->ui_log_file->text()  );
+    l_env_path.replace(P_FPGA_FILE,  ui->ui_fpga_file->text() );
+    l_env_path.replace(P_CMD_PATH,   ui->ui_cmd_file->text()  );
+    l_env_path.replace(P_CMD_DATA,   ui->ui_cmd_data->text()  );
 
 
     QFile f(pns_ini);
@@ -100,4 +110,6 @@ void file_mdle::on_pushButton_clicked()
 {
     close();
 }
+
+
 

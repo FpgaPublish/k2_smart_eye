@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../src/file_mdle/file_mdle.h"
+#include "../../../smart_eye_pc_core/smart_eye_pc/src/file_mdle/file_mdle.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>

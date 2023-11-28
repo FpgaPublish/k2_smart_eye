@@ -50,8 +50,15 @@ MainWindow::MainWindow(QWidget *parent)
     u_uvc_blck = new uvc_blck;
     // --------------------------------------------
     // fpga set
-    u_fpga_subs = new fpga_subs;
+    u_fpga_subs  = new fpga_subs;
+    u_fpga_subs2 = new fpga_subs(NULL,1);
+    u_fpga_subs3 = new fpga_subs(NULL,2);
+    u_fpga_subs4 = new fpga_subs(NULL,3);
     connect(u_fpga_subs,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
+    connect(u_fpga_subs2,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
+    connect(u_fpga_subs3,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
+    connect(u_fpga_subs4,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
+
     // --------------------------------------------
     // cmd mode set
     u_cmd_blck = new cmd_blck;
@@ -73,6 +80,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(u_file_mdle,&file_mdle::update_trig,
             u_fpga_subs,&fpga_subs::update_file_path);
     connect(u_file_mdle,&file_mdle::update_trig,
+            u_fpga_subs2,&fpga_subs::update_file_path);
+    connect(u_file_mdle,&file_mdle::update_trig,
+            u_fpga_subs3,&fpga_subs::update_file_path);
+    connect(u_file_mdle,&file_mdle::update_trig,
+            u_fpga_subs4,&fpga_subs::update_file_path);
+
+    connect(u_file_mdle,&file_mdle::update_trig,
             u_once_blck,&once_blck::update_file_path);
 
     u_file_mdle->m_get_path(); //must connect before this
@@ -91,6 +105,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(u_uvc_blck,&uvc_blck::info_trig,this,&MainWindow::info_blck);
     connect(u_file_mdle,&file_mdle::info_trig,this,&MainWindow::info_blck);
     connect(u_fpga_subs,&fpga_subs::info_trig,this,&MainWindow::info_blck);
+    connect(u_fpga_subs2,&fpga_subs::info_trig,this,&MainWindow::info_blck);
+    connect(u_fpga_subs3,&fpga_subs::info_trig,this,&MainWindow::info_blck);
+    connect(u_fpga_subs4,&fpga_subs::info_trig,this,&MainWindow::info_blck);
+
     //first view
     ui->tab_console->setCurrentIndex(0);
 
@@ -245,10 +263,25 @@ void MainWindow::on_ui_flow_ctrl_clicked()
 
 void MainWindow::on_ui_flow_fpga_clicked()
 {
-    ui->ui_display->insertTab(2,u_fpga_subs,"fpga_set");
+    ui->ui_display->insertTab(2,u_fpga_subs,"fpga_ZU2");
     ui->ui_display->setCurrentWidget(u_fpga_subs);
 }
 
+void MainWindow::on_ui_flow_fpga_2_clicked()
+{
+    ui->ui_display->insertTab(3,u_fpga_subs2,"fpga_ZY7");
+    ui->ui_display->setCurrentWidget(u_fpga_subs2);
+}
+void MainWindow::on_ui_flow_fpga_3_clicked()
+{
+    ui->ui_display->insertTab(4,u_fpga_subs3,"fpga_K7");
+    ui->ui_display->setCurrentWidget(u_fpga_subs3);
+}
+void MainWindow::on_ui_flow_fpga_4_clicked()
+{
+    ui->ui_display->insertTab(5,u_fpga_subs4,"fpga_X7");
+    ui->ui_display->setCurrentWidget(u_fpga_subs4);
+}
 
 void MainWindow::on_actionbat_triggered()
 {
@@ -261,4 +294,10 @@ void MainWindow::on_ui_once_solve_clicked()
     ui->ui_display->insertTab(3,u_once_blck,"once_blck");
     ui->ui_display->setCurrentWidget(u_once_blck);
 }
+
+
+
+
+
+
 

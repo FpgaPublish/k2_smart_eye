@@ -29,6 +29,8 @@ private slots:
     void on_ui_read_set_clicked();
     void on_pushButton_clicked();
 
+    void on_ui_write_reset_clicked();
+
 public:
     QList<QString> m_get_path();
 

@@ -183,7 +183,16 @@ void uart_blck::uart_recv_cmd()
     sl_cmd.removeLast();
     foreach(QString cmd,sl_cmd)
     {
-        emit info_trig(1,CODE_UART_PS,"info",cmd);
+        QByteArray ba_cmd = cmd.toUtf8();
+        if(ba_cmd.left(4).toInt() == CODE_UART_PS) //PS uart
+        {
+            emit info_trig(1,CODE_UART_PS,"info",cmd.mid(4,-1));
+        }
+        else if(ba_cmd.left(4).toInt() == CODE_UART_PL) //PL uart
+        {
+            emit info_trig(1,CODE_UART_PL,"info",cmd.mid(4,-1));
+        }
+
     }
 }
 

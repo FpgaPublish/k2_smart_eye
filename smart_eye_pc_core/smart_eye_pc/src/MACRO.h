@@ -30,9 +30,10 @@
 #define CODE_BMP_FILE 0x12210001
 
 #define CODE_UART_PS  0x00210002
+
 //PC(1) and PL(3) code
 #define CODE_FPGA_SET 0x13310000
-
+#define CODE_UART_PL  0x13310001
 //add struct
 struct SUdpPck{
     quint32 pkg_code;      //class code

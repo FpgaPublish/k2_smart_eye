@@ -46,6 +46,7 @@ public:
     QLabel *label_9;
     QLineEdit *ui_cmd_data;
     QHBoxLayout *horizontalLayout;
+    QPushButton *ui_write_reset;
     QPushButton *ui_read_set;
     QPushButton *ui_write_set;
     QPushButton *pushButton;
@@ -157,6 +158,11 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        ui_write_reset = new QPushButton(file_mdle);
+        ui_write_reset->setObjectName(QString::fromUtf8("ui_write_reset"));
+
+        horizontalLayout->addWidget(ui_write_reset);
+
         ui_read_set = new QPushButton(file_mdle);
         ui_read_set->setObjectName(QString::fromUtf8("ui_read_set"));
 
@@ -194,6 +200,7 @@ public:
         label_7->setText(QApplication::translate("file_mdle", "FPGA\351\205\215\347\275\256\346\226\207\344\273\266", nullptr));
         label_8->setText(QApplication::translate("file_mdle", "\346\214\207\344\273\244\350\277\220\350\241\214\350\267\257\345\276\204", nullptr));
         label_9->setText(QApplication::translate("file_mdle", "\346\214\207\344\273\244\350\277\220\350\241\214\346\225\260\346\215\256", nullptr));
+        ui_write_reset->setText(QApplication::translate("file_mdle", "\345\244\215\344\275\215", nullptr));
         ui_read_set->setText(QApplication::translate("file_mdle", "\350\257\273\345\217\226", nullptr));
         ui_write_set->setText(QApplication::translate("file_mdle", "\345\206\231\345\205\245", nullptr));
         pushButton->setText(QApplication::translate("file_mdle", "\345\205\263\351\227\255", nullptr));

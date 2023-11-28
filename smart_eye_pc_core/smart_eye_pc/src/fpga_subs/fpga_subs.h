@@ -14,7 +14,8 @@ class fpga_subs : public QWidget
     Q_OBJECT
 
 public:
-    explicit fpga_subs(QWidget *parent = nullptr);
+    explicit fpga_subs(QWidget *parent = nullptr
+                       ,int dev_numb = 0);
     ~fpga_subs();
 
 private:
@@ -33,8 +34,11 @@ private slots:
 private:
     QString p_fpga_file;
     QList<QString>l_fpga_set;
+    QList<QString>l_fpga_info;
+
     const int row    = 32;
     const int column = 4 ;
+    int dev_numb_tmp;
 signals:
     void info_trig(quint32,quint32,QString,QString);
     void udp_trig(QString,quint32);
