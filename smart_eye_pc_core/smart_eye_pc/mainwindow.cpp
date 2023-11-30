@@ -58,7 +58,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(u_fpga_subs2,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
     connect(u_fpga_subs3,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
     connect(u_fpga_subs4,&fpga_subs::udp_trig,u_udp_subs,&udp_subs::m_send_udp_dat);
-
+    //uart
+    connect(u_fpga_subs, &fpga_subs::uart_trig ,u_uart_blck,&uart_blck::uart_send_cmd);
+    connect(u_fpga_subs2,&fpga_subs::uart_trig,u_uart_blck,&uart_blck::uart_send_cmd);
+    connect(u_fpga_subs3,&fpga_subs::uart_trig,u_uart_blck,&uart_blck::uart_send_cmd);
+    connect(u_fpga_subs4,&fpga_subs::uart_trig,u_uart_blck,&uart_blck::uart_send_cmd);
     // --------------------------------------------
     // cmd mode set
     u_cmd_blck = new cmd_blck;
@@ -123,6 +127,7 @@ MainWindow::MainWindow(QWidget *parent)
     // flow control win
     u_flow_blck = new flow_blck;
     connect(u_uvc_blck,&uvc_blck::bmp_trig,u_flow_blck,&flow_blck::m_bmp_in);
+
     connect(u_flow_blck,&flow_blck::bmp_udp_trig,u_udp_subs,&udp_subs::m_send_udp_bmp);
 
 }

@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QTableWidgetItem>
+#include <QHeaderView>
 fpga_subs::fpga_subs(QWidget *parent, int dev_numb) :
     QWidget(parent),
     ui(new Ui::fpga_subs)
@@ -12,6 +13,15 @@ fpga_subs::fpga_subs(QWidget *parent, int dev_numb) :
     table = new QTableWidget(row,column+1,this);
     ui->ui_table_layout->addWidget(table);
     table->resize(900,350);
+    // --------------------------------------------
+    // table auto size
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    table->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    table->resizeColumnsToContents();
+    table->resizeRowsToContents();
+    // --------------------------------------------
+    // table head data
     QStringList head_lab;
     head_lab << "0x0000" << "0x0001" << "0x0002" << "0x0003" << "note";
     table->setHorizontalHeaderLabels(head_lab);
@@ -23,24 +33,7 @@ fpga_subs::fpga_subs(QWidget *parent, int dev_numb) :
         table->setVerticalHeaderLabels(column_lab);
     }
 
-    for(int j = 0; j < row; j++)
-    {
-        switch(j)
-        {
-        case 0: l_fpga_info.append("[0]cmd info\n[1]ps info\n[2]pl info\n[3]pa info"); break;
-        default: l_fpga_info.append(" "); break;
-        }
 
-    }
-
-    for(int i = 0; i <row;i++)
-    {
-        //table->item(i,j)->setText(l_fpga_set[i*4+j]);
-        QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText(l_fpga_info[i]);
-        table->setItem(i,column,item);
-        //delete item;
-    }
     dev_numb_tmp = dev_numb;
     F_SETWIN
 }
@@ -53,6 +46,7 @@ fpga_subs::~fpga_subs()
 void fpga_subs::update_file_path(QList<QString> p_list)
 {
     p_fpga_file = p_list[P_FPGA_FILE]; //path update
+
     on_ui_rd_param_clicked(); //update chart
 }
 
@@ -100,10 +94,48 @@ void fpga_subs::on_ui_rd_param_clicked()
              //delete item;
         }
     }
+    // --------------------------------------------
+    // add note
+    //new file
+    pns_ini = p_fpga_file + "fpga_info" + QString::number(dev_numb_tmp) +".txt";
+    QFile fid(pns_ini);
+    QFileInfo fid_if(pns_ini);
+
+    qDebug() << pns_ini;
+    if(!fid_if.exists())
+    {
+        QString info = "no file " + pns_ini + " to read";
+        emit info_trig(0,CODE_FPGA_SET,"error",info);
+        return;
+    }
+    fid.open(QIODevice::ReadOnly | QIODevice::Text);
+    l_fpga_info.clear();
+    for(int j = 0; j < row; j++)
+    {
+        l_fpga_info.append(" ");
+    }
+    i = 0;
+    while(!fid.atEnd() && i < row)
+    {
+        QByteArray b_line = fid.readLine();
+        QString s_line(b_line);
+        s_line.remove("\n");
+        l_fpga_info.replace(i,s_line);
+        i ++;
+    }
+    fid.close();
+    for(int i = 0; i <row;i++)
+    {
+        //table->item(i,j)->setText(l_fpga_set[i*4+j]);
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setText(l_fpga_info[i]);
+        table->setItem(i,column,item);
+        //delete item;
+    }
 }
 void fpga_subs::on_ui_wr_param_clicked()
 {
-    QRegExp regx("[A-Fa-f0-9]{1,4}");
+    QRegExp regx("[A-Fa-f0-9]{1,8}");
     l_fpga_set.clear();
     for(int i = 0; i <row;i++)
     {
@@ -114,15 +146,16 @@ void fpga_subs::on_ui_wr_param_clicked()
              item_rd = table->item(i,j);
              if(item_rd == NULL)
              {
-                l_fpga_set.append("0");
+                l_fpga_set.append("00000000");
              }
              else if(regx.exactMatch(item_rd->text()))
              {
-                l_fpga_set.append(item_rd->text());
+                QString str = QString("%1").arg(item_rd->text(), 8, QLatin1Char('0'));
+                l_fpga_set.append(str);
              }
              else //data not match
              {
-                l_fpga_set.append("0");
+                l_fpga_set.append("00000000");
              }
         }
     }
@@ -139,10 +172,11 @@ void fpga_subs::on_ui_wr_param_clicked()
     }
     f.close();
     on_ui_rd_param_clicked();
+
     // --------------------------------------------
     // send signal to UDP to tran to ARM
     emit udp_trig(pns_ini,CODE_FPGA_SET);
-
+    emit uart_trig(pns_ini,CODE_UART_PL);
 }
 
 

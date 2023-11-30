@@ -1,5 +1,6 @@
 {
 	"nodes":[
+		{"id":"2066e6f9bcc45897","x":-799,"y":814,"width":400,"height":400,"type":"file","file":"辅助开发上位机程序.md"},
 		{"type":"file","file":"设计动力.md","id":"142fb1d8f9c57740","x":-777,"y":1224,"width":400,"height":400},
 		{"type":"file","file":"wiki的自动化维护.md","id":"aa2250301e362f29","x":1098,"y":391,"width":400,"height":400},
 		{"type":"file","file":"基础设计流程.md","id":"0ad9ef741a2a8d77","x":561,"y":-66,"width":400,"height":400},
@@ -14,7 +15,8 @@
 		{"type":"text","text":"### 设计目标\n- [x] 完成bat指令的相应\n- [x] 实现bat指令的执行\n- [x] 完成PA和PL的数据闭环\n- [x] 测试对应的指令界面的执行效果\n- [x] 开发一个自动化日志的执行脚本","id":"89d76ebd8993712f","x":160,"y":922,"width":328,"height":187},
 		{"type":"file","file":"界面开发框架.md","id":"eba639b46d8f7327","x":561,"y":835,"width":400,"height":360},
 		{"type":"text","text":"# 设计目标\n- [x] 添加PL的串口模块，进入调试状态\n- [ ] 添加应用模块\n- [ ] 添加设计模块\n- [ ] 完成整个设计的资源优化\n- [ ] 完成一个基础的设计训练","id":"8335279b11153ebe","x":80,"y":1308,"width":379,"height":229},
-		{"type":"file","file":"串口开发流程.md","id":"546066e4b34eec06","x":561,"y":1223,"width":400,"height":400}
+		{"type":"file","file":"串口开发流程.md","id":"546066e4b34eec06","x":561,"y":1223,"width":459,"height":400},
+		{"type":"file","file":"指令控制的敲门砖.md","id":"49eb3155cb439949","x":1120,"y":1223,"width":400,"height":400}
 	],
 	"edges":[
 		{"id":"8a5d58e512c4d687","fromNode":"26590aa762ecb618","fromSide":"bottom","toNode":"549fd8a17dfcc738","toSide":"top"},
@@ -30,6 +32,8 @@
 		{"id":"49ab1d3cc2cb5dd0","fromNode":"ba77830d2344c12e","fromSide":"bottom","toNode":"1d4a916efd927799","toSide":"top"},
 		{"id":"581b72e15406dbe4","fromNode":"1d4a916efd927799","fromSide":"right","toNode":"8335279b11153ebe","toSide":"left"},
 		{"id":"64f96e7be6ca8122","fromNode":"8335279b11153ebe","fromSide":"right","toNode":"546066e4b34eec06","toSide":"left"},
-		{"id":"d5b9fcfc349b12fb","fromNode":"1d4a916efd927799","fromSide":"left","toNode":"142fb1d8f9c57740","toSide":"right"}
+		{"id":"d5b9fcfc349b12fb","fromNode":"1d4a916efd927799","fromSide":"left","toNode":"142fb1d8f9c57740","toSide":"right"},
+		{"id":"7da6ac2be29ad8a4","fromNode":"546066e4b34eec06","fromSide":"right","toNode":"49eb3155cb439949","toSide":"left"},
+		{"id":"f851f78a4fb0f110","fromNode":"ba77830d2344c12e","fromSide":"left","toNode":"2066e6f9bcc45897","toSide":"right"}
 	]
 }

@@ -1,5 +1,7 @@
 #include "uart_blck.h"
 #include "ui_uart_blck.h"
+#include <QFile>
+#include <QFileInfo>
 // --------------------------------------------
 // user macro
 #include "../MACRO.h"
@@ -193,6 +195,75 @@ void uart_blck::uart_recv_cmd()
             emit info_trig(1,CODE_UART_PL,"info",cmd.mid(4,-1));
         }
 
+    }
+}
+
+void uart_blck::uart_send_cmd(QString pns_dat,quint32 code)
+{
+    QFile f(pns_dat);
+    QFileInfo fi(pns_dat);
+    QList<quint32> l_dat_hex;
+    switch (code)
+    {
+    case CODE_UART_PL:
+        if(!fi.exists())
+        {
+            QString info = "no file " + pns_dat + " to read";
+            emit info_trig(0,CODE_UART_PL,"error",info);
+            return;
+        }
+        f.open(QIODevice::ReadOnly | QIODevice::Text);
+        l_dat_hex.clear();
+        int i = 0;
+        while(!f.atEnd())
+        {
+            bool ok;
+            QByteArray b_line =  f.readLine();
+            QString s_line(b_line);
+            s_line.remove("\n");
+            l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
+
+            i ++;
+        }
+
+        //qDebug() << l_dat_hex;
+        // --------------------------------------------
+        // send data
+        pkg_send.pkg_code = CODE_UART_PL; //small format
+        pkg_send.pkg_len  = l_dat_hex.size() * 4;
+        pkg_send.pkg_wid  = 1;
+        pkg_send.pkg_xor  = 0;
+        //qDebug() << l_dat_hex.size();
+        pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
+        for(int i = 0; i < l_dat_hex.size(); i++)
+        {
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24; //big format
+            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
+            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
+            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
+            pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i*4+0]
+                                                ^ pkg_send.pkg_dat[i*4+1]
+                                                ^ pkg_send.pkg_dat[i*4+2]
+                                                ^ pkg_send.pkg_dat[i*4+3];
+
+        }
+        pkg_send.pkg_wid = pkg_send.pkg_wid | (1); //update cur width
+        if(c_serial->isOpen())
+        {
+            // --------------------------------------------
+            // send UDP pkg
+            QByteArray ba_dat;
+            ba_dat.resize(sizeof(pkg_send));
+            char *pba_dat = ba_dat.data();
+            memcpy(pba_dat,&pkg_send,sizeof(pkg_send));
+            c_serial->write(pba_dat);
+            emit info_trig(1,CODE_UART_PL,"info","uart param download is ok");
+        }
+        else
+        {
+            emit info_trig(1,CODE_UART_PL,"error","uart is not open");
+        }
+        break;
     }
 }
 

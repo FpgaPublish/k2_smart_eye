@@ -4,6 +4,7 @@
 #include <QWidget>
 // --------------------------------------------
 // user add lib
+#include "../MACRO.h"
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 namespace Ui {
@@ -57,8 +58,16 @@ public:
     void uart_open();
 private slots:
     void uart_recv_cmd();
+
 private:
     QString s_text_temp;
+    // --------------------------------------------
+    // uart send cmd
+public slots:
+    void uart_send_cmd(QString pns_dat,quint32 code);
+private:
+    SUdpPck pkg_send;
+    SUdpPck pkg_recv;
 };
 
 #endif // UART_BLCK_H

@@ -205,7 +205,7 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
         pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
         for(int i = 0; i < l_dat_hex.size(); i++)
         {
-            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24;
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24; //big format
             pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
             pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
             pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
@@ -220,13 +220,13 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
         send_udp_pkg();
         if(wait_signals(1000))
         {
-            QString info = "fpga cmd download ok";
-            emit info_trig(0,CODE_FPGA_SET,"info",info);
+            QString info = "fpga udp cmd download ok";
+            emit info_trig(1,CODE_FPGA_SET,"info",info);
         }
         else
         {
-            QString info = "fpga cmd download error";
-            emit info_trig(0,CODE_FPGA_SET,"error",info);
+            QString info = "fpga udp cmd download error";
+            emit info_trig(1,CODE_FPGA_SET,"error",info);
         }
         break;
     }

@@ -42,6 +42,7 @@ private:
 signals:
     void info_trig(quint32,quint32,QString,QString);
     void udp_trig(QString,quint32);
+    void uart_trig(QString,quint32);
 };
 
 #endif // FPGA_SUBS_H
