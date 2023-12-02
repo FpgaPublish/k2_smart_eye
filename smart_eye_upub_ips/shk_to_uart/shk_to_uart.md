@@ -394,3 +394,13 @@ assign s_shk_rd_sdata = r_uart_rd_data;
 //ila and vio to debug and monitor
 
 endmodule
+/* end verilog
+```           
+              
+</details>   
+              
+## sim        
+              
+![sim](image.png)
+
+*/            

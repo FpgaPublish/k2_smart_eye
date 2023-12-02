@@ -236,7 +236,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>650155ea</spirit:value>
+            <spirit:value>0aab5029</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -252,7 +252,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>650155ea</spirit:value>
+            <spirit:value>0aab5029</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -280,7 +280,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>2d6913fd</spirit:value>
+            <spirit:value>e6bba165</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -669,7 +669,7 @@
       <spirit:file>
         <spirit:name>shk_to_uart.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_650155ea</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_0aab5029</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -766,21 +766,68 @@
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>shk_to_uart_v1_1</xilinx:displayName>
-      <xilinx:autoFamilySupportLevel>level_0</xilinx:autoFamilySupportLevel>
+      <xilinx:autoFamilySupportLevel>level_1</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>9</xilinx:coreRevision>
+      <xilinx:coreRevision>14</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>user.org:user:shk_to_uart:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2023-11-18T16:14:11Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-11-25T03:55:52Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@615a9c36_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@41c94adb_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7732a436_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@707cd228_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@273936fb_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4bc57fea_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2ee26d45_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6989bc1d_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6d631377_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@594d7ca8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4afbebc_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@527eb19a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7c4c7f32_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@aad508_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5716afc9_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@31494c35_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5c6fdb44_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@50409cb5_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5b914d51_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@24970462_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@348c57ad_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2ff8be20_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5cba1d0c_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1b203de_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2be48324_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@47901586_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7754578d_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1d666be8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@16916465_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@63350b33_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@72d572d4_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@9c373a7_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@54cff3e0_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@cfc7d35_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@28cbf3d8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@552584c8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@499d8f55_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1ee8a721_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6a55ec15_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@45da91e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@17b0af37_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7de1a8b1_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@a5cfbea_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1b871d01_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@611e725_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@227f3748_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4d36f3e8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_to_uart</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="7f638996"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d60ef126"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="43926dd0"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="16e3a926"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="f1308b48"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="68692602"/>

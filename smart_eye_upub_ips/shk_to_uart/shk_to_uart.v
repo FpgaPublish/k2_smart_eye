@@ -94,7 +94,7 @@ NB_UART_BITS:  0,1000
            
 ```verilog
 */
-localparam NB_BAUD_NUMB = NB_SYS_FRE / NB_BAUD_RATE;
+localparam NB_BAUD_NUMB = NB_SYS_FRE / (NB_BAUD_RATE) ; //16bit span
 function automatic integer LOG2(input integer N);
 begin
     N = N - 1;
