@@ -38,6 +38,7 @@ QT_END_NAMESPACE
 #include "./src/fpga_subs/fpga_subs.h"
 #include "./src/cmd_blck/cmd_blck.h"
 #include "./src/once_blck/once_blck.h"
+#include "./src/tools_blck/hex_cacu.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -101,6 +102,8 @@ private slots:
 
     void on_ui_flow_fpga_4_clicked();
 
+    void on_action_hex_triggered();
+
 private:
     // --------------------------------------------
     // usv camera
@@ -124,5 +127,8 @@ private:
     // --------------------------------------------
     // once blck
     once_blck *u_once_blck;
+    // --------------------------------------------
+    // tools blck
+    hex_cacu *u_hex_cacu;
 };
 #endif // MAINWINDOW_H

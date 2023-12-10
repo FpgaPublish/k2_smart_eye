@@ -35,7 +35,7 @@
 #define CODE_FPGA_SET 0x13310000
 #define CODE_UART_PL  0x13310001
 //add struct
-struct SUdpPck{
+struct SUdpPck{ //little format
     quint32 pkg_code;      //class code
     quint32 pkg_len ;      //one pkg length
     quint32 pkg_wid ;      //current pkg width
@@ -70,8 +70,9 @@ Q_DECLARE_METATYPE(SUdpPck)
 // =====================================================
 // public function name
 #define F_SETWIN    setWindowFlags(Qt::WindowTitleHint  |   \
-                    Qt::CustomizeWindowHint);
-
-
+                    Qt::CustomizeWindowHint | \
+                    Qt::CustomizeWindowHint | \
+                    Qt::WindowMinimizeButtonHint | \
+                    Qt::WindowMaximizeButtonHint);
 #endif // MACRO_H
 

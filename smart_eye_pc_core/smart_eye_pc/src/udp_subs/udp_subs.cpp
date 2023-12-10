@@ -189,8 +189,10 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
             QByteArray b_line =  f.readLine();
             QString s_line(b_line);
             s_line.remove("\n");
-            l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
-
+            //<1>digitial
+            //l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
+            //<2>hex
+            l_dat_hex.append(s_line.toUInt(&ok,16));
             i ++;
         }
 
@@ -205,10 +207,10 @@ void udp_subs::m_send_udp_dat(QString pns_dat,quint32 code)
         pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
         for(int i = 0; i < l_dat_hex.size(); i++)
         {
-            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24; //big format
-            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
-            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
-            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >>  0; //little format
+            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >>  8;
+            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >> 16;
+            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >> 24;
             pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i*4+0]
                                                 ^ pkg_send.pkg_dat[i*4+1]
                                                 ^ pkg_send.pkg_dat[i*4+2]

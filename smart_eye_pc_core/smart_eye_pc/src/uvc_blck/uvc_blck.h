@@ -41,7 +41,7 @@ signals:
     //info
     void info_trig(quint32,quint32,QString,QString);
 public:
-    void m_open_camera_stream(bool flag,int max_imag);
+    void m_open_camera_stream(int max_imag);
 public slots:
     void update_file_path(QList<QString>);
     //solve camera data
@@ -56,6 +56,7 @@ private:
     QImage video_imags;
     int    nb_imag_save;
     int    imag_save_cnt;
+    bool   imag_save_proc;
     QString p_video_path;
     videosurface_driv *vsd;
 signals:
@@ -66,6 +67,10 @@ signals:
 private slots:
     void run_bat_start();
     void image_capture_save(int,QImage);
+    // wait signals solve
+    bool wait_signals(const unsigned int millisecond);
+signals:
+    void save_imag_trig();
 private:
     QCameraImageCapture *image_capture;
 

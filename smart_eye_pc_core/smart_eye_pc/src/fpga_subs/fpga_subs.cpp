@@ -13,6 +13,7 @@ fpga_subs::fpga_subs(QWidget *parent, int dev_numb) :
     table = new QTableWidget(row,column+1,this);
     ui->ui_table_layout->addWidget(table);
     table->resize(900,350);
+    connect(table,&QTableWidget::cellClicked,this,&fpga_subs::on_ui_table_cellClicked);
     // --------------------------------------------
     // table auto size
     table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -183,5 +184,14 @@ void fpga_subs::on_ui_wr_param_clicked()
 void fpga_subs::on_ui_close_clicked()
 {
     close();
+}
+
+void fpga_subs::on_ui_table_cellClicked(int row,int column)
+{
+    bool ok;
+    quint32 hex =  table->item(row,column)->text().toInt(&ok,16);
+    quint32 dec =  0;
+    quint32 bit =  0;
+    emit hex_trig(hex,dec,bit);
 }
 

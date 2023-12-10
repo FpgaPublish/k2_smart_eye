@@ -48,7 +48,7 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="ui_flow_cnt">
              <property name="geometry">
@@ -325,7 +325,7 @@
            <enum>QTabWidget::South</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_info">
            <attribute name="title">
@@ -347,6 +347,13 @@
             </item>
            </layout>
           </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tab_tools">
+          <property name="tabPosition">
+           <enum>QTabWidget::South</enum>
+          </property>
          </widget>
         </item>
        </layout>
@@ -378,8 +385,9 @@
    </widget>
    <widget class="QMenu" name="menuconnect">
     <property name="title">
-     <string>链接</string>
+     <string>工具</string>
     </property>
+    <addaction name="action_hex"/>
    </widget>
    <widget class="QMenu" name="menuparameter">
     <property name="title">
@@ -435,6 +443,11 @@
   <action name="actionbat">
    <property name="text">
     <string>脚本</string>
+   </property>
+  </action>
+  <action name="action_hex">
+   <property name="text">
+    <string>进制</string>
    </property>
   </action>
  </widget>

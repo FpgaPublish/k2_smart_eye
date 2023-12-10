@@ -43,6 +43,12 @@ signals:
     void info_trig(quint32,quint32,QString,QString);
     void udp_trig(QString,quint32);
     void uart_trig(QString,quint32);
+    // --------------------------------------------
+    // add data change
+private slots:
+    void on_ui_table_cellClicked(int row,int column);
+signals:
+    void hex_trig(quint32 hex,quint32 dec,quint32 bit);
 };
 
 #endif // FPGA_SUBS_H

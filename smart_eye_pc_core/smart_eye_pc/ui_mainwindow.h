@@ -38,6 +38,7 @@ public:
     QAction *action_uvc;
     QAction *action_file;
     QAction *actionbat;
+    QAction *action_hex;
     QWidget *ui_win;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *ui_imag_reco;
@@ -79,6 +80,7 @@ public:
     QWidget *tab_protocol;
     QVBoxLayout *verticalLayout;
     QTextBrowser *ui_prot_log;
+    QTabWidget *tab_tools;
     QMenuBar *menubar;
     QMenu *menufile;
     QMenu *menumode;
@@ -103,6 +105,8 @@ public:
         action_file->setObjectName(QString::fromUtf8("action_file"));
         actionbat = new QAction(MainWindow);
         actionbat->setObjectName(QString::fromUtf8("actionbat"));
+        action_hex = new QAction(MainWindow);
+        action_hex->setObjectName(QString::fromUtf8("action_hex"));
         ui_win = new QWidget(MainWindow);
         ui_win->setObjectName(QString::fromUtf8("ui_win"));
         horizontalLayout_4 = new QHBoxLayout(ui_win);
@@ -268,6 +272,12 @@ public:
 
         ui_info->addWidget(tab_console);
 
+        tab_tools = new QTabWidget(ui_win);
+        tab_tools->setObjectName(QString::fromUtf8("tab_tools"));
+        tab_tools->setTabPosition(QTabWidget::South);
+
+        ui_info->addWidget(tab_tools);
+
 
         ui_imag_reco->addLayout(ui_info);
 
@@ -305,15 +315,16 @@ public:
         menubar->addAction(menuhelp->menuAction());
         menufile->addAction(action_file);
         menumode->addAction(actionbat);
+        menuconnect->addAction(action_hex);
         menuparameter->addAction(action_net);
         menuparameter->addAction(action_uart);
         menuparameter->addAction(action_uvc);
 
         retranslateUi(MainWindow);
 
-        ui_flow->setCurrentIndex(1);
+        ui_flow->setCurrentIndex(2);
         ui_display->setCurrentIndex(0);
-        tab_console->setCurrentIndex(0);
+        tab_console->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -327,6 +338,7 @@ public:
         action_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247", nullptr));
         action_file->setText(QApplication::translate("MainWindow", "\351\205\215\347\275\256", nullptr));
         actionbat->setText(QApplication::translate("MainWindow", "\350\204\232\346\234\254", nullptr));
+        action_hex->setText(QApplication::translate("MainWindow", "\350\277\233\345\210\266", nullptr));
         ui_uart->setText(QApplication::translate("MainWindow", "\344\270\262\345\217\243\351\200\232\344\277\241", nullptr));
         ui_net->setText(QApplication::translate("MainWindow", "\347\275\221\345\217\243\351\200\232\344\277\241", nullptr));
         ui_uvc->setText(QApplication::translate("MainWindow", "\347\233\221\346\216\247\351\200\232\344\277\241", nullptr));
@@ -350,7 +362,7 @@ public:
         tab_console->setTabText(tab_console->indexOf(tab_protocol), QApplication::translate("MainWindow", "\344\272\244\344\272\222\344\277\241\346\201\257", nullptr));
         menufile->setTitle(QApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menumode->setTitle(QApplication::translate("MainWindow", "\346\250\241\345\274\217", nullptr));
-        menuconnect->setTitle(QApplication::translate("MainWindow", "\351\223\276\346\216\245", nullptr));
+        menuconnect->setTitle(QApplication::translate("MainWindow", "\345\267\245\345\205\267", nullptr));
         menuparameter->setTitle(QApplication::translate("MainWindow", "\351\200\232\344\277\241", nullptr));
         menuhelp->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251", nullptr));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", nullptr));

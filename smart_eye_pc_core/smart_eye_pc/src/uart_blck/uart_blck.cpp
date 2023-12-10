@@ -2,6 +2,7 @@
 #include "ui_uart_blck.h"
 #include <QFile>
 #include <QFileInfo>
+#include <QDebug>
 // --------------------------------------------
 // user macro
 #include "../MACRO.h"
@@ -177,25 +178,38 @@ void uart_blck::uart_open()
 void uart_blck::uart_recv_cmd()
 {
     QByteArray data = c_serial->readAll();
-    QString text;
-    text += data;
-    QStringList sl_cmd = text.split("\n");
-    sl_cmd[0] = s_text_temp + sl_cmd[0];
-    s_text_temp = sl_cmd.last();
-    sl_cmd.removeLast();
-    foreach(QString cmd,sl_cmd)
+    if(data.size() < 4)
     {
-        QByteArray ba_cmd = cmd.toUtf8();
-        if(ba_cmd.left(4).toInt() == CODE_UART_PS) //PS uart
-        {
-            emit info_trig(1,CODE_UART_PS,"info",cmd.mid(4,-1));
-        }
-        else if(ba_cmd.left(4).toInt() == CODE_UART_PL) //PL uart
-        {
-            emit info_trig(1,CODE_UART_PL,"info",cmd.mid(4,-1));
-        }
-
+        qDebug() << "size:" << data.size();
+        return;
     }
+    quint32 rec_code = (data[0] << 0  )
+                     | (data[1] << 8  )
+                     | (data[2] << 16 )
+                     | (data[3] << 24 );
+    //qDebug() << "size:" << data.size() << rec_code;
+    switch(rec_code)
+    {
+    case CODE_UART_PS:
+    case CODE_UART_PL:
+        {
+            data.remove(0,4);
+            for(int i = 0; i < data.size(); ++i)
+            {
+                if(!isascii((unsigned char)(data[i]))
+                  || (unsigned char)(data[i]) == 0x00)
+                {
+                    data.remove(i--,1);
+                }
+            }
+            QString cmd = QString(data);
+            emit info_trig(1,rec_code,"uart",cmd);
+            //qDebug() << "size:" << data.size() << rec_code << cmd;
+            break;
+        }
+    default: break;
+    }
+
 }
 
 void uart_blck::uart_send_cmd(QString pns_dat,quint32 code)
@@ -221,7 +235,9 @@ void uart_blck::uart_send_cmd(QString pns_dat,quint32 code)
             QByteArray b_line =  f.readLine();
             QString s_line(b_line);
             s_line.remove("\n");
-            l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
+            //l_dat_hex.append(QString::number(s_line.toInt(),16).toInt(&ok,16));
+            //l_dat_hex.append(s_line.toInt(&ok,16));
+            l_dat_hex.append(s_line.toUInt(&ok,16));
 
             i ++;
         }
@@ -237,10 +253,10 @@ void uart_blck::uart_send_cmd(QString pns_dat,quint32 code)
         pkg_send.pkg_wid = pkg_send.pkg_wid << 16;
         for(int i = 0; i < l_dat_hex.size(); i++)
         {
-            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i] >> 24; //big format
-            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i] >> 16;
-            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i] >>  8;
-            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i] >>  0;
+            pkg_send.pkg_dat[i*4+0] = l_dat_hex[i]  >>  0; //big format
+            pkg_send.pkg_dat[i*4+1] = l_dat_hex[i]  >>  8;
+            pkg_send.pkg_dat[i*4+2] = l_dat_hex[i]  >> 16;
+            pkg_send.pkg_dat[i*4+3] = l_dat_hex[i]  >> 24;
             pkg_send.pkg_xor = pkg_send.pkg_xor ^ pkg_send.pkg_dat[i*4+0]
                                                 ^ pkg_send.pkg_dat[i*4+1]
                                                 ^ pkg_send.pkg_dat[i*4+2]
@@ -251,12 +267,15 @@ void uart_blck::uart_send_cmd(QString pns_dat,quint32 code)
         if(c_serial->isOpen())
         {
             // --------------------------------------------
+            // clear read
+            //c_serial->clear();
+            // --------------------------------------------
             // send UDP pkg
             QByteArray ba_dat;
             ba_dat.resize(sizeof(pkg_send));
             char *pba_dat = ba_dat.data();
             memcpy(pba_dat,&pkg_send,sizeof(pkg_send));
-            c_serial->write(pba_dat);
+            c_serial->write(ba_dat,sizeof(pkg_send));
             emit info_trig(1,CODE_UART_PL,"info","uart param download is ok");
         }
         else

@@ -129,6 +129,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(u_uvc_blck,&uvc_blck::bmp_trig,u_flow_blck,&flow_blck::m_bmp_in);
 
     connect(u_flow_blck,&flow_blck::bmp_udp_trig,u_udp_subs,&udp_subs::m_send_udp_bmp);
+    // --------------------------------------------
+    // tools block
+    u_hex_cacu = new hex_cacu;
+    on_action_hex_triggered();//open hex default
+    connect(u_fpga_subs,&fpga_subs::hex_trig,u_hex_cacu,&hex_cacu::update_data_in);
+    connect(u_fpga_subs2,&fpga_subs::hex_trig,u_hex_cacu,&hex_cacu::update_data_in);
+    connect(u_fpga_subs3,&fpga_subs::hex_trig,u_hex_cacu,&hex_cacu::update_data_in);
+    connect(u_fpga_subs4,&fpga_subs::hex_trig,u_hex_cacu,&hex_cacu::update_data_in);
 
 }
 
@@ -158,6 +166,7 @@ void MainWindow::info_blck(quint32 n_type, quint32 n_code, QString s_info, QStri
     //printf info
     QString s_code = QString("%1").arg(n_code,4,16,QChar('0')); //code number
     QString s_show = "[0x" + s_code +"]" + s_info + ": " +s_text; //info struct
+    //qDebug() << s_show;
     if(QString::compare(s_info,"error") == 0)
     {
         switch(n_type) //which console
@@ -242,12 +251,12 @@ void MainWindow::on_ui_uvc_clicked()
     ui->ui_uvc_spd->setMaximum(1920*1280);
     ui->ui_uvc_spd->setMinimum(0);
     ui->ui_uvc_spd->setValue(spd);
-    u_uvc_blck->m_open_camera_stream(1,30);
+    u_uvc_blck->m_open_camera_stream(30);
 }
 
 void MainWindow::on_action_uvc_triggered()
 {
-    u_uvc_blck->m_open_camera_stream(0,0);
+    u_uvc_blck->m_open_camera_stream(0);
     u_uvc_blck->show();
 }
 
@@ -300,9 +309,10 @@ void MainWindow::on_ui_once_solve_clicked()
     ui->ui_display->setCurrentWidget(u_once_blck);
 }
 
-
-
-
-
-
+void MainWindow::on_action_hex_triggered()
+{
+    //u_hex_cacu->show();
+    ui->tab_tools->insertTab(0,u_hex_cacu,"hex_cacu");
+    ui->tab_tools->setCurrentWidget(u_hex_cacu);
+}
 

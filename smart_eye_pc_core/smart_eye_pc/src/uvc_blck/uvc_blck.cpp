@@ -4,11 +4,14 @@
 #include <QDebug>
 #include <QThread>
 #include <QMenu>
+#include <QTimer>
+
 uvc_blck::uvc_blck(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uvc_blck)
 {
     ui->setupUi(this);
+
     camera_init = 0;
     nb_imag_save = 0;
     imag_save_cnt = 0;
@@ -109,7 +112,7 @@ void uvc_blck::on_ui_write_clicked()
     camera->stop();
     disconnect(vsd,SIGNAL(frame_trig(QVideoFrame))
             ,this,SLOT(recv_video_frame(QVideoFrame)));
-    QThread::sleep(1);
+    //QThread::sleep(1);
     //delete camera;
     camera = new QCamera(l_device_name[ui->ui_device->currentIndex()].toUtf8(),this);
     emit info_trig(0,CODE_UVC_INFO,"info","open new camera");
@@ -156,20 +159,13 @@ int uvc_blck::get_camera_spd()
                  + "*"
                  + QString::number(cur_resolution.height());
     emit info_trig(0,CODE_UVC_INFO,"info",info);
-    return spd;
 
+    return spd;
 }
 
-void uvc_blck::m_open_camera_stream(bool flag,int max_imag)
+void uvc_blck::m_open_camera_stream(int max_imag)
 {
-    if(flag)
-    {
-        nb_imag_save = max_imag;
-    }
-    else
-    {
-        nb_imag_save = 0;
-    }
+    nb_imag_save = max_imag;
     //on_ui_write_clicked();
 }
 
@@ -180,7 +176,6 @@ void uvc_blck::update_file_path(QList<QString> l_file)
 
 void uvc_blck::recv_video_frame(QVideoFrame cframe)
 {
-
     cframe.map(QAbstractVideoBuffer::ReadOnly);
     video_imags = QImage(cframe.bits(),
                          cframe.width(),
@@ -232,13 +227,29 @@ void uvc_blck::run_bat_start()
     int n_bat = 0;
     QString pns_bmp = p_video_path+"hello.bmp";
     image_capture->capture();
+    wait_signals(5000);
     emit run_bat_trig(n_bat,pns_bmp);
 }
+bool uvc_blck::wait_signals( const unsigned int millisecond)
+{
+    bool result = true;
 
+    QEventLoop loop;
+    connect(this,SIGNAL(save_imag_trig()), &loop, SLOT(quit()));
+
+    QTimer timer;
+    timer.setSingleShot(true);
+    connect(&timer, &QTimer::timeout, [&loop, &result]{ result = false; loop.quit();});
+    timer.start(millisecond);
+    loop.exec();
+    timer.stop();
+    return result;
+}
 void uvc_blck::image_capture_save(int n,QImage img)
 {
     qDebug() <<"image_capture_save arg1 = " << n;
     QString pns_bmp = p_video_path+"hello.bmp";
     img.save(pns_bmp);
+    emit save_imag_trig();
 }
 
