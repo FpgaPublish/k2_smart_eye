@@ -1,0 +1,70 @@
+m255
+K4
+z2
+!s11f vlog 2020.4 2020.10, Oct 13 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/fpga/u1_library/k0_smart_eye/smart_eye_ip_repo/shk_to_iic
+T_opt
+Z1 !s110 1695533423
+V?Fb]N4O1[8LS=V0?1NRd:3
+04 13 4 work tb_shk_to_iic fast 0
+=1-000ae431a4f1-650fc96f-bf9bd-4c78
+o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2020.4;71
+vshk_to_iic
+Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R1
+!i10b 1
+!s100 kezPF8:k;RFb`LZCgF8F^2
+Z4 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IOecST>2B8XO3C6[c>_ARa3
+S1
+R0
+w1695533402
+8shk_to_iic.v
+Fshk_to_iic.v
+!i122 2
+L0 49 535
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2020.4;71
+r1
+!s85 0
+31
+Z7 !s108 1695533423.000000
+Z8 !s107 shk_to_iic.v|tb_shk_to_iic.sv|
+Z9 !s90 -reportprogress|300|tb_shk_to_iic.sv|
+!i113 0
+Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vtb_shk_to_iic
+R3
+R1
+!i10b 1
+!s100 BF48D_[cRaQ`IFDfDh78n2
+R4
+I@^7P<EeR2;CljjmG6^=Ji3
+S1
+R0
+w1695532592
+8tb_shk_to_iic.sv
+Ftb_shk_to_iic.sv
+!i122 2
+L0 23 87
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R2

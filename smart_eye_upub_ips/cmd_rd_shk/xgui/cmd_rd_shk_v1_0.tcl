@@ -1,6 +1,7 @@
 # Definitional proc to organize widgets for parameters.
 proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "Component_Name"
+  ipgui::add_param $IPINST -name "WD_BYTE"
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "MD_CMD_START" -parent ${Page_0}
@@ -13,6 +14,14 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "WD_SHK_ADDR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "WD_SHK_DATA" -parent ${Page_0}
   ipgui::add_param $IPINST -name "WD_SLEEP_SPAN" -parent ${Page_0}
+
+  #Adding Page
+  set page_2 [ipgui::add_page $IPINST -name "page_2" -display_name {page_1}]
+  set_property tooltip {page_1} ${page_2}
+  ipgui::add_param $IPINST -name "NB_BCK_DATA" -parent ${page_2}
+  ipgui::add_param $IPINST -name "SR_BCK_DATA" -parent ${page_2}
+  ipgui::add_param $IPINST -name "WD_BCK_ADDR" -parent ${page_2}
+  ipgui::add_param $IPINST -name "WD_BCK_DATA" -parent ${page_2}
 
 
 }
@@ -32,6 +41,15 @@ proc update_PARAM_VALUE.MD_SIM_ABLE { PARAM_VALUE.MD_SIM_ABLE } {
 
 proc validate_PARAM_VALUE.MD_SIM_ABLE { PARAM_VALUE.MD_SIM_ABLE } {
 	# Procedure called to validate MD_SIM_ABLE
+	return true
+}
+
+proc update_PARAM_VALUE.NB_BCK_DATA { PARAM_VALUE.NB_BCK_DATA } {
+	# Procedure called to update NB_BCK_DATA when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.NB_BCK_DATA { PARAM_VALUE.NB_BCK_DATA } {
+	# Procedure called to validate NB_BCK_DATA
 	return true
 }
 
@@ -59,6 +77,42 @@ proc update_PARAM_VALUE.NB_PKG_SIZE { PARAM_VALUE.NB_PKG_SIZE } {
 
 proc validate_PARAM_VALUE.NB_PKG_SIZE { PARAM_VALUE.NB_PKG_SIZE } {
 	# Procedure called to validate NB_PKG_SIZE
+	return true
+}
+
+proc update_PARAM_VALUE.SR_BCK_DATA { PARAM_VALUE.SR_BCK_DATA } {
+	# Procedure called to update SR_BCK_DATA when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.SR_BCK_DATA { PARAM_VALUE.SR_BCK_DATA } {
+	# Procedure called to validate SR_BCK_DATA
+	return true
+}
+
+proc update_PARAM_VALUE.WD_BCK_ADDR { PARAM_VALUE.WD_BCK_ADDR } {
+	# Procedure called to update WD_BCK_ADDR when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.WD_BCK_ADDR { PARAM_VALUE.WD_BCK_ADDR } {
+	# Procedure called to validate WD_BCK_ADDR
+	return true
+}
+
+proc update_PARAM_VALUE.WD_BCK_DATA { PARAM_VALUE.WD_BCK_DATA } {
+	# Procedure called to update WD_BCK_DATA when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.WD_BCK_DATA { PARAM_VALUE.WD_BCK_DATA } {
+	# Procedure called to validate WD_BCK_DATA
+	return true
+}
+
+proc update_PARAM_VALUE.WD_BYTE { PARAM_VALUE.WD_BYTE } {
+	# Procedure called to update WD_BYTE when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.WD_BYTE { PARAM_VALUE.WD_BYTE } {
+	# Procedure called to validate WD_BYTE
 	return true
 }
 
@@ -156,5 +210,30 @@ proc update_MODELPARAM_VALUE.WD_CMD_DATA { MODELPARAM_VALUE.WD_CMD_DATA PARAM_VA
 proc update_MODELPARAM_VALUE.WD_ERR_INFO { MODELPARAM_VALUE.WD_ERR_INFO PARAM_VALUE.WD_ERR_INFO } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.WD_ERR_INFO}] ${MODELPARAM_VALUE.WD_ERR_INFO}
+}
+
+proc update_MODELPARAM_VALUE.WD_BCK_DATA { MODELPARAM_VALUE.WD_BCK_DATA PARAM_VALUE.WD_BCK_DATA } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.WD_BCK_DATA}] ${MODELPARAM_VALUE.WD_BCK_DATA}
+}
+
+proc update_MODELPARAM_VALUE.WD_BCK_ADDR { MODELPARAM_VALUE.WD_BCK_ADDR PARAM_VALUE.WD_BCK_ADDR } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.WD_BCK_ADDR}] ${MODELPARAM_VALUE.WD_BCK_ADDR}
+}
+
+proc update_MODELPARAM_VALUE.SR_BCK_DATA { MODELPARAM_VALUE.SR_BCK_DATA PARAM_VALUE.SR_BCK_DATA } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.SR_BCK_DATA}] ${MODELPARAM_VALUE.SR_BCK_DATA}
+}
+
+proc update_MODELPARAM_VALUE.NB_BCK_DATA { MODELPARAM_VALUE.NB_BCK_DATA PARAM_VALUE.NB_BCK_DATA } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.NB_BCK_DATA}] ${MODELPARAM_VALUE.NB_BCK_DATA}
+}
+
+proc update_MODELPARAM_VALUE.WD_BYTE { MODELPARAM_VALUE.WD_BYTE PARAM_VALUE.WD_BYTE } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.WD_BYTE}] ${MODELPARAM_VALUE.WD_BYTE}
 }
 

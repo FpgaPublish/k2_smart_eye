@@ -22,6 +22,7 @@
 // Revision: 0.01 
 // Revision 0.01 - File Created
 //          1.1  - fix read data j is used as i
+//          1.2  - fix uart error 
 // Additional Comments:
 // 
 // *******************************************************************************
@@ -125,6 +126,7 @@ reg [WD_SHK_ADDR-1:0]  r_shk_wr_maddr;
 reg [WD_BAUD_NUMB-1:0] r_uart_wr_cunt;
 reg [WD_SHK_ADDR-1:0]  r_uart_wr_numb;
 wire                   w_uart_wr_busy;
+reg                    r_uart_wr_busy;
 // ----------------------------------------------------------
 // read prepare
 reg r_port_uart_mtx;
@@ -191,7 +193,7 @@ begin
     begin
         r_shk_wr_maddr <= 1'b0; //
     end
-    else if(1) //
+    else if(w_shk_wr_valid_pos) //temp addr to write
     begin
         r_shk_wr_maddr <= s_shk_wr_maddr; //
     end
@@ -233,6 +235,17 @@ always@(posedge i_sys_clk)
 begin
     if(!i_sys_resetn) //system reset
     begin
+        r_uart_wr_busy <= 1'b0; //
+    end
+    else if(1) //
+    begin
+        r_uart_wr_busy <= w_uart_wr_busy;  //
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
         r_uart_wr_numb <= 1'b0; //
     end
     else if(w_shk_wr_valid_pos
@@ -267,7 +280,8 @@ begin
             end
             else
             begin
-                r_port_uart_mrx <= r_shk_wr_maddr[WD_SHK_ADDR - r_uart_wr_numb];
+                //r_port_uart_mrx <= r_shk_wr_maddr[WD_SHK_ADDR - r_uart_wr_numb]; //MSB first
+                r_port_uart_mrx <= r_shk_wr_maddr[r_uart_wr_numb - 1]; //LSB first
             end
         end
         else 
@@ -282,8 +296,8 @@ begin
             end
             else
             begin
-                r_port_uart_mrx <= r_shk_wr_mdata[WD_SHK_ADDR - r_uart_wr_numb];
-                
+                //r_port_uart_mrx <= r_shk_wr_mdata[WD_SHK_ADDR - r_uart_wr_numb]; //MSB first
+                r_port_uart_mrx <= r_shk_wr_mdata[r_uart_wr_numb - 1]; //LSB first
             end
         end
     end
@@ -293,7 +307,7 @@ begin
     end
 end
 assign s_port_uart_mrx = r_port_uart_mrx;
-assign s_shk_wr_ready  = ~r_write_addr_busy; //not busy is write enable
+assign s_shk_wr_ready  = ~w_uart_wr_busy && r_uart_wr_busy; //not busy from busy
 // ----------------------------------------------------------
 // read prepare
 always@(posedge i_sys_clk)
@@ -363,7 +377,7 @@ begin
     begin
         r_uart_rd_busy <= 1'b1;  //
     end
-    else if(r_uart_rd_cunt >= NB_BAUD_NUMB  && r_uart_rd_numb >= NB_UART_BITS - 1'b1)
+    else if(r_uart_rd_cunt >= NB_BAUD_NUMB  && r_uart_rd_numb >= NB_UART_BITS - 1'b1 - 1'b1) //not include 
     begin
         r_uart_rd_busy <= 1'b0;
     end
@@ -379,9 +393,9 @@ generate genvar j;
             begin
                 r_uart_rd_data[j] <= 1'b0; //
             end
-            else if(r_uart_rd_numb == WD_SHK_DATA - j && r_uart_rd_cunt >= NB_BAUD_NUMB / 2) //1.1  - fix read data j is used as i
+            else if(r_uart_rd_numb == j + 1 && r_uart_rd_cunt == NB_BAUD_NUMB / 2) //1.1  - fix read data j is used as i
             begin
-                r_uart_rd_data[j] <= r_port_uart_mtx;  //
+                r_uart_rd_data[j] <= r_port_uart_mtx;  //1.2  - fix uart error 
             end
         end
     end

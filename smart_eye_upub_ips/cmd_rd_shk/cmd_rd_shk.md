@@ -26,29 +26,6 @@
 // *******************************************************************************
 /* end verilog
 ```
-           
- </details> 
-## param
- 
-```mermaid
-gantt 
-title cmd_rd_shk timing
-dateFormat X
-axisFormat %s
-section design
-2^WD_SLEEP_SPAN:  0,100
-NB_PKG_SIZE  : 100,150
-NB_PKG_HEAD  : 103
-NB_CMD_ORDE  : 100,400
-2^WD_SLEEP_SPAN:  400,500
-```
-           
- <details> 
-
-```verilog
-*/
-/* end verilog
-```
 # interface          
           
  </details> 
@@ -314,4 +291,7 @@ endmodule
               
 ## sim        
 ![sim_result](image.png)
+
+## ila 
+![ila_result](image-1.png)
 */            

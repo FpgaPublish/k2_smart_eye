@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"034d5b0396c0a772","x":-752,"y":1206,"width":400,"height":400,"type":"file","file":"指令系统的意义.md"},
+		{"id":"034d5b0396c0a772","type":"file","file":"指令系统的意义.md","x":-752,"y":1206,"width":400,"height":400},
 		{"id":"be0a79bda9c5d106","type":"file","file":"自动化脚本完善.md","x":1121,"y":758,"width":400,"height":400},
 		{"id":"5993581e264bba5c","type":"file","file":"通信设计标准.md","x":1099,"y":310,"width":400,"height":400},
 		{"id":"85ebcbee28e85dc9","type":"file","file":"wiki仓库维护.md","x":-791,"y":309,"width":400,"height":400},
@@ -10,9 +10,14 @@
 		{"id":"b74382ededc8eed7","type":"text","text":"## 板间通信设计","x":-220,"y":480,"width":250,"height":60},
 		{"id":"bc512639b1044aff","type":"text","text":"### 设计目标\n- [x] 一个简易的10线SPI模型\n- [x] 主机控制模块\n- [x] 读取数据模块\n- [ ] 写入数据模块\n- [ ] 模块级仿真环境\n- [ ] 板级验证效果\n- [ ] 通信模块设计自动化","x":160,"y":360,"width":280,"height":300},
 		{"id":"f38e65e16cb2d0d8","type":"file","file":"板间通信模块的设计.md","x":620,"y":310,"width":400,"height":400},
-		{"id":"f3bfda10d2006dbd","type":"text","text":"设计目标\n- [x] 开始串口通信的设计\n- [x] 优化目前的设计时间\n- [x] 降低重复设计的内容\n- [x] 完成代码的快速验证","x":160,"y":780,"width":250,"height":194},
 		{"id":"d78253da844d7749","type":"file","file":"SHK通用模块设计.md","x":620,"y":774,"width":400,"height":400},
-		{"id":"42ba9c5c04b461cd","x":-214,"y":1377,"width":250,"height":60,"type":"text","text":"# 指令系统"}
+		{"id":"42ba9c5c04b461cd","type":"text","text":"# 指令系统","x":-214,"y":1377,"width":250,"height":60},
+		{"id":"f3bfda10d2006dbd","type":"text","text":"设计目标\n- [x] 开始串口通信的设计\n- [x] 优化目前的设计时间\n- [x] 降低重复设计的内容\n- [x] 完成代码的快速验证","x":160,"y":780,"width":250,"height":194},
+		{"id":"e2bda7d8fbb30cb3","type":"text","text":"设计目标\n- [x] 完成指令的写入\n- [ ] 完成指令的回显\n- [ ] 建立指令的简易交互机制\n- [ ] 将指令应用到各个模块的处理逻辑中","x":240,"y":1309,"width":250,"height":194},
+		{"id":"665b3233fe17fc5d","type":"file","file":"完成指令写入的核心框架的搭建.md","x":620,"y":1207,"width":400,"height":400},
+		{"id":"c522a34e33f6b1ac","type":"text","text":"操作系统","x":-204,"y":1818,"width":250,"height":60},
+		{"id":"079d052473202dc3","type":"text","text":"设计目标\n- [ ] 移植一个PYNQ的操作系统\n- [ ] 实现串口高级系统的实现","x":240,"y":1763,"width":250,"height":171},
+		{"id":"b6f17f3ce5e55105","x":-269,"y":2040,"width":381,"height":300,"type":"text","text":"任务调整\n* 将规划任务移动到WIN开发平台\n* 将工程任务下发到各个工程\n* 降低设计的复杂度\n* 基于上述的调整\n\t* 本模块暂停更新\n\t* 作为历史文件保存\n\t* 与之相对的是大量的模块设计\n\t* 以模块设计去支撑系统级的设计"}
 	],
 	"edges":[
 		{"id":"8a5d58e512c4d687","fromNode":"26590aa762ecb618","fromSide":"bottom","toNode":"549fd8a17dfcc738","toSide":"top"},
@@ -26,6 +31,11 @@
 		{"id":"4e2fe7380a4b3739","fromNode":"f3bfda10d2006dbd","fromSide":"right","toNode":"d78253da844d7749","toSide":"left"},
 		{"id":"9abf562d9931c5f2","fromNode":"d78253da844d7749","fromSide":"right","toNode":"be0a79bda9c5d106","toSide":"left"},
 		{"id":"f00c40a453bef810","fromNode":"b74382ededc8eed7","fromSide":"bottom","toNode":"42ba9c5c04b461cd","toSide":"top"},
-		{"id":"99e31f8b6f187acd","fromNode":"42ba9c5c04b461cd","fromSide":"left","toNode":"034d5b0396c0a772","toSide":"right"}
+		{"id":"99e31f8b6f187acd","fromNode":"42ba9c5c04b461cd","fromSide":"left","toNode":"034d5b0396c0a772","toSide":"right"},
+		{"id":"1ff44c1d8cbeae24","fromNode":"42ba9c5c04b461cd","fromSide":"right","toNode":"e2bda7d8fbb30cb3","toSide":"left"},
+		{"id":"5c471b32aac1748b","fromNode":"e2bda7d8fbb30cb3","fromSide":"right","toNode":"665b3233fe17fc5d","toSide":"left"},
+		{"id":"7fec65760266ddb8","fromNode":"42ba9c5c04b461cd","fromSide":"bottom","toNode":"c522a34e33f6b1ac","toSide":"top"},
+		{"id":"ce4809611d569a31","fromNode":"c522a34e33f6b1ac","fromSide":"right","toNode":"079d052473202dc3","toSide":"left"},
+		{"id":"b978b125f1c025de","fromNode":"c522a34e33f6b1ac","fromSide":"bottom","toNode":"b6f17f3ce5e55105","toSide":"top"}
 	]
 }

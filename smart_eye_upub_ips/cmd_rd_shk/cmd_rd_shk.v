@@ -21,32 +21,11 @@
 //         * 
 // Revision: 0.01 
 // Revision 0.01 - File Created
+//          0.02 - write back cmd info
 // Additional Comments:
 // 
 // *******************************************************************************
-/* end verilog
-```
-           
- </details> 
-## param
- 
-```mermaid
-gantt 
-title cmd_rd_shk timing
-dateFormat X
-axisFormat %s
-section design
-2^WD_SLEEP_SPAN:  0,100
-NB_PKG_SIZE  : 100,150
-NB_PKG_HEAD  : 103
-NB_CMD_ORDE  : 100,400
-2^WD_SLEEP_SPAN:  400,500
-```
-           
- <details> 
 
-```verilog
-*/
 /* end verilog
 ```
 # interface          
@@ -72,12 +51,19 @@ module cmd_rd_shk #(
     parameter NB_PKG_HEAD = 3,
     //width
     parameter WD_SLEEP_SPAN = 30,
-    //#shake bus
+    //shake bus
     parameter WD_SHK_DATA = 8,
     parameter WD_SHK_ADDR = 8,
-    //#cmd bus
+    //shk wr back
+    parameter WD_BCK_DATA = 32,
+    parameter WD_BCK_ADDR = 32,
+    //string info 
+    parameter SR_BCK_DATA = "wr cmd succed",
+    parameter NB_BCK_DATA = 5, //max 255
+    //cmd bus
     parameter NB_CMD_ORDE = 128,
     parameter WD_CMD_DATA = 32,
+    parameter WD_BYTE     = 8,
     parameter WD_ERR_INFO = 4
    )(
     //system signals
@@ -95,7 +81,17 @@ module cmd_rd_shk #(
     input    [WD_SHK_ADDR-1:0]  m_shk_rd_saddr, 
     //cmd output 
     output   [WD_CMD_DATA*NB_CMD_ORDE-1:0]  m_cmd_dst_arry,
-    
+    output                                  m_cmd_dst_updt,
+    //shk cmd reback
+    //shake master src
+    output                      m_shk_wr_valid,
+    output                      m_shk_wr_msync,
+    output   [WD_BCK_DATA-1:0]  m_shk_wr_mdata,
+    output   [WD_BCK_ADDR-1:0]  m_shk_wr_maddr,
+    input                       m_shk_wr_ready,
+    input                       m_shk_wr_ssync,
+    input    [WD_BCK_DATA-1:0]  m_shk_wr_sdata,
+    input    [WD_BCK_ADDR-1:0]  m_shk_wr_saddr, 
     //error info feedback
     output   [WD_ERR_INFO-1:0]  m_err_cmd_info1
 );
@@ -115,6 +111,8 @@ begin
 end 
 endfunction
 localparam WD_CMD_BYTE = LOG2(NB_CMD_BYTE);
+localparam NB_SRC_DIV_DST = WD_BCK_DATA / WD_SHK_DATA;
+localparam NB_BCK_BYTE    = NB_SRC_DIV_DST * NB_BCK_DATA;
 //========================================================
 //register and wire to time sequence and combine
 // ----------------------------------------------------------
@@ -136,6 +134,21 @@ reg [WD_CMD_DATA-1:0]               r_shk_rd_sdata_xor;
 // ----------------------------------------------------------
 // dst data
 reg [WD_CMD_DATA-1:0]r_cmd_dst_fifo [0:NB_CMD_ORDE-1];
+reg                  r_cmd_dst_updt;
+// ----------------------------------------------------------
+// write back
+reg                       r_shk_wr_valid;
+reg                       r_shk_wr_valid_d1;
+wire                      w_shk_wr_valid_pos;
+reg                       r_shk_wr_msync;
+reg   [WD_BYTE    -1:0]   r_shk_wr_msync_cunt;
+reg   [WD_BCK_DATA-1:0]   r_shk_wr_mdata;
+reg   [WD_BCK_ADDR-1:0]   r_shk_wr_maddr;
+//string 
+wire  [NB_BCK_DATA*WD_BCK_DATA-1:0] w_string_int;
+wire  [NB_BCK_DATA*WD_BCK_DATA-1:0] w_string_int_big;
+
+wire  [WD_BCK_DATA-1:0]   w_string_array [0:NB_BCK_DATA-1];
 //========================================================
 //always and assign to drive logic and connect
 // ----------------------------------------------------------
@@ -296,6 +309,122 @@ generate genvar j;
         
     end
 endgenerate
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_cmd_dst_updt <= 1'b0; //
+    end
+    else if(1) //
+    begin
+        r_cmd_dst_updt <=  r_shk_rd_sdata_able; //
+    end
+end
+assign w_cmd_dst_updt =  !r_shk_rd_sdata_able && r_cmd_dst_updt; //after able cmd and sleep start to update
+// ----------------------------------------------------------
+// write back
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_valid <= 1'b0; //
+    end
+    else if(MD_SIM_ABLE && r_shk_rd_sdata_able && !r_cmd_dst_updt) //sim mode: pre send valid to save sim time
+    begin
+        r_shk_wr_valid <= 1'b1;
+    end
+    else if(w_cmd_dst_updt) //
+    begin
+        r_shk_wr_valid <= 1'b1;  //
+    end
+    else if(m_shk_wr_ready)
+    begin
+        r_shk_wr_valid <= 1'b0;
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_valid_d1 <= 1'b0; //
+    end
+    else if(1) //
+    begin
+        r_shk_wr_valid_d1 <= r_shk_wr_valid;  //
+    end
+end
+assign w_shk_wr_valid_pos = r_shk_wr_valid && !r_shk_wr_valid_d1;
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_msync <= 1'b0; //
+    end
+    else if(w_shk_wr_valid_pos) //
+    begin
+        r_shk_wr_msync <= 1'b1;  //
+    end
+    else if(r_shk_wr_msync_cunt == NB_BCK_DATA) //include "/n"
+    begin
+        r_shk_wr_msync <= 1'b0;
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_msync_cunt <= 1'b0; //
+    end
+    else if(!r_shk_wr_msync) //
+    begin
+        r_shk_wr_msync_cunt <= 1'b0;  //
+    end
+    else 
+    begin
+        r_shk_wr_msync_cunt <= r_shk_wr_msync_cunt  + 1'b1;
+    end
+end
+
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_mdata <= 1'b0; //
+    end
+    else if(r_shk_wr_msync_cunt == NB_BCK_DATA - 1'b1) //
+    begin
+        r_shk_wr_mdata <= "\n\t\t\t";  //
+    end
+    else if(r_shk_wr_msync_cunt == NB_BCK_DATA)
+    begin
+        r_shk_wr_mdata <= 'hffffffff;
+    end
+    else if(!r_shk_wr_msync)
+    begin
+        r_shk_wr_mdata <= w_string_array[0];
+    end
+    else 
+    begin
+        r_shk_wr_mdata <= w_string_array[r_shk_wr_msync_cunt+1];
+    end
+end
+assign w_string_int = SR_BCK_DATA; //little format
+generate genvar m;
+    for(m = 0; m < NB_BCK_BYTE; m = m + 1)
+    begin:FOR_NB_BCK_BYTE
+        assign w_string_int_big[WD_BYTE*(m+1)-1:WD_BYTE*m] = w_string_int[WD_BYTE*(NB_BCK_BYTE-m)-1:WD_BYTE*(NB_BCK_BYTE-m-1)];
+    end
+endgenerate
+generate genvar k;
+    for(k = 0; k < NB_BCK_DATA; k = k + 1)
+    begin:FOR_NB_BCK_DATA
+        assign w_string_array[k] = w_string_int_big[WD_BCK_DATA*(k+1)-1:WD_BCK_DATA*k]; //big format
+    end
+endgenerate
+assign m_shk_wr_valid = r_shk_wr_valid;
+assign m_shk_wr_msync = r_shk_wr_msync;
+assign m_shk_wr_mdata = r_shk_wr_mdata;
+assign m_shk_wr_maddr = MD_CMD_START;
 //========================================================
 //module and task to build part of system
 

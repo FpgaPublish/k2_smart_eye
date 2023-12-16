@@ -32,6 +32,9 @@ wire s_port_uart_0_mrx;
 //assign s_port_uart_0_mtx = s_port_uart_0_mrx;
 initial #10000000 $stop();
 // ----------------------------------------------------------
+// set sim mode 
+defparam u_design_x7_wrapper.design_x7_i.cmd_rd_shk_0.inst.MD_SIM_ABLE = 1;
+// ----------------------------------------------------------
 // add uart cmd rd sim
 localparam UART_RATE =  1000_000_000 / 115200;
 localparam NB_PKG  = 244;
@@ -52,7 +55,7 @@ begin
             repeat(8)
             begin
                 #(UART_RATE)
-                s_port_uart_0_mtx = r_fifo[k][8-1-n+m*8];
+                s_port_uart_0_mtx = r_fifo[k][n+m*8];
                 #0
                 n = n  + 1;
             end
