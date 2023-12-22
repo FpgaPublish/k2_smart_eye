@@ -108,8 +108,12 @@ reg [WD_SHK_DATA-1:0]  r_shk_src_mdata = 0;
 reg [WD_SHK_ADDR-1:0]  r_shk_src_maddr;
 wire [WD_DST_DATA-1:0] w_shk_src_maddr_arry [0:NB_SRC_DIV_DST-1];
 reg                    r_shk_src_ready;
+reg                    r_shk_src_ssync;
 
 assign s_shk_src_ready = r_shk_src_ready;
+assign s_shk_src_ssync = r_shk_src_ssync;
+assign s_shk_src_sdata = 0;
+assign s_shk_src_saddr = 0;
 // ----------------------------------------------------------
 // wr addr
 reg [WD_SRC_DIV_DST-1:0] r_wr_addr_cunt;
@@ -312,6 +316,21 @@ begin
     else if(cstate == RELEASE)
     begin
         r_shk_src_ready <= 1'b1;
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(cstate == IDLE) //state IDLE reset
+    begin
+        r_shk_src_ssync <= 1'b0;
+    end
+    else if(cstate == WR_ADDR)
+    begin
+        r_shk_src_ssync <= 1'b1;
+    end
+    else if(cstate == RELEASE)
+    begin
+        r_shk_src_ssync <= 1'b0;
     end
 end
 // ----------------------------------------------------------

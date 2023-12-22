@@ -140,6 +140,7 @@ reg                  r_cmd_dst_updt;
 reg                       r_shk_wr_valid;
 reg                       r_shk_wr_valid_d1;
 wire                      w_shk_wr_valid_pos;
+reg                       r_shk_wr_valid_flg;
 reg                       r_shk_wr_msync;
 reg   [WD_BYTE    -1:0]   r_shk_wr_msync_cunt;
 reg   [WD_BCK_DATA-1:0]   r_shk_wr_mdata;
@@ -320,7 +321,8 @@ begin
         r_cmd_dst_updt <=  r_shk_rd_sdata_able; //
     end
 end
-assign w_cmd_dst_updt =  !r_shk_rd_sdata_able && r_cmd_dst_updt; //after able cmd and sleep start to update
+assign m_cmd_dst_updt =  MD_SIM_ABLE ? r_shk_rd_sdata_able && !r_cmd_dst_updt : 
+                         !r_shk_rd_sdata_able && r_cmd_dst_updt; //after able cmd and sleep start to update
 // ----------------------------------------------------------
 // write back
 always@(posedge i_sys_clk)
@@ -329,17 +331,32 @@ begin
     begin
         r_shk_wr_valid <= 1'b0; //
     end
-    else if(MD_SIM_ABLE && r_shk_rd_sdata_able && !r_cmd_dst_updt) //sim mode: pre send valid to save sim time
-    begin
-        r_shk_wr_valid <= 1'b1;
-    end
-    else if(w_cmd_dst_updt) //
+    // else if(MD_SIM_ABLE && r_shk_rd_sdata_able && !r_cmd_dst_updt) //sim mode: pre send valid to save sim time
+    // begin
+    //     r_shk_wr_valid <= 1'b1;
+    // end
+    else if(m_cmd_dst_updt) //
     begin
         r_shk_wr_valid <= 1'b1;  //
     end
     else if(m_shk_wr_ready)
     begin
         r_shk_wr_valid <= 1'b0;
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_shk_wr_valid_flg <= 1'b0; //
+    end
+    else if(m_cmd_dst_updt && !r_shk_wr_valid) //first cmd
+    begin 
+        r_shk_wr_valid_flg <= 1'b1;  //
+    end
+    else if(r_shk_wr_msync)
+    begin
+        r_shk_wr_valid_flg <= 1'b0;
     end
 end
 always@(posedge i_sys_clk)
@@ -360,7 +377,7 @@ begin
     begin
         r_shk_wr_msync <= 1'b0; //
     end
-    else if(w_shk_wr_valid_pos) //
+    else if(r_shk_wr_valid_flg && m_shk_wr_ssync) //first sync allow
     begin
         r_shk_wr_msync <= 1'b1;  //
     end

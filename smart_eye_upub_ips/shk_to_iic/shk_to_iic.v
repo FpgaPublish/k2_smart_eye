@@ -250,7 +250,7 @@ begin
     begin
         if(s_shk_0_valid)
             begin
-                r_shk_0_maddr <= s_shk_0_maddr;
+                r_shk_0_maddr   <= s_shk_0_maddr;
                 r_shk_0_rd_numb <= s_shk_0_mdat1;
             end
     end
@@ -267,8 +267,11 @@ generate genvar i;
             else if(cstate == START
                 &&  s_shk_0_msync)
             begin
-                r_shk_0_mdata_fifo[0] <= s_shk_0_mdata;
-                if(i > 0)
+                if(i == 0)
+                begin
+                    r_shk_0_mdata_fifo[0] <= s_shk_0_mdata;
+                end
+                else if(i > 0) //data temp
                 begin
                     r_shk_0_mdata_fifo[i] <= r_shk_0_mdata_fifo[i-1];
                 end 
@@ -482,6 +485,17 @@ begin
             r_iic_0_scl <= 1'b1;
         end
     end
+    else if(cstate == STOP)
+    begin
+        if(r_scl_cnt == NB_SCL_CNT - 1'b1)
+        begin
+            r_iic_0_scl <= 1'b0;
+        end
+        else if(r_scl_cnt == NB_SCL_RISE - 1'b1)
+        begin
+            r_iic_0_scl <= 1'b1;
+        end
+    end
     else if(cstate == OVER)
     begin
         if(r_scl_cnt == NB_SCL_RISE - 1'b1)
@@ -566,11 +580,22 @@ begin
         end
     end
 end
-assign m_iic_0_scl = r_iic_0_scl;
-// inout convert
-assign m_iic_0_sda = r_iic_0_tri ? 1'bz : r_iic_0_sdo;
-assign w_iic_0_sdi = m_iic_0_sda;
 
+// inout convert
+// assign m_iic_0_sda = r_iic_0_tri ? 1'bz : r_iic_0_sdo;
+// assign w_iic_0_sdi = m_iic_0_sda;
+assign m_iic_0_scl = r_iic_0_scl;
+IOBUF #(
+    .DRIVE(12), // Specify the output drive strength
+    .IBUF_LOW_PWR("TRUE"),  // Low Power - "TRUE", High Performance = "FALSE" 
+    .IOSTANDARD("DEFAULT"), // Specify the I/O standard
+    .SLEW("SLOW") // Specify the output slew rate
+) IOBUF_inst (
+    .O (w_iic_0_sdi),     // Buffer output
+    .IO(m_iic_0_sda),     // Buffer inout port (connect directly to top-level port)
+    .I (r_iic_0_sdo),     // Buffer input
+    .T (r_iic_0_tri)      // 3-state enable input, high=input, low=output
+);
 //========================================================
 //module and task to build part of system
 

@@ -95,7 +95,7 @@ NB_UART_BITS:  0,1000
            
 ```verilog
 */
-localparam NB_BAUD_NUMB = NB_SYS_FRE / (NB_BAUD_RATE) ; //16bit span
+localparam NB_BAUD_NUMB = NB_SYS_FRE / (NB_BAUD_RATE) ; //1bit span
 function automatic integer LOG2(input integer N);
 begin
     N = N - 1;
@@ -136,6 +136,7 @@ wire w_port_uart_mtx_neg;
 reg [WD_BAUD_NUMB-1:0] r_uart_rd_cunt;
 reg [WD_SHK_ADDR-1:0]  r_uart_rd_numb;
 reg                    r_uart_rd_busy;
+reg                    r_uart_rd_busy_d1;
 // ----------------------------------------------------------
 // read data
 reg [WD_SHK_DATA-1:0]  r_uart_rd_data;
@@ -382,6 +383,17 @@ begin
         r_uart_rd_busy <= 1'b0;
     end
 end
+always@(posedge i_sys_clk)
+begin
+    if(!i_sys_resetn) //system reset
+    begin
+        r_uart_rd_busy_d1 <= 1'b0; //
+    end
+    else if(1) //
+    begin
+        r_uart_rd_busy_d1 <= r_uart_rd_busy;  //
+    end
+end
 // ----------------------------------------------------------
 // read data
 generate genvar j;
@@ -400,7 +412,7 @@ generate genvar j;
         end
     end
 endgenerate
-assign s_shk_rd_ready = !r_uart_rd_busy; //not busy ready data
+assign s_shk_rd_ready = !r_uart_rd_busy && r_uart_rd_busy_d1; //not busy ready data
 assign s_shk_rd_sdata = r_uart_rd_data; 
 //========================================================
 //always and assign to drive logic and connect

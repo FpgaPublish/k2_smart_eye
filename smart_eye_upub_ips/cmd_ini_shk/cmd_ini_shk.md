@@ -52,8 +52,8 @@ module cmd_ini_shk #(
     input           i_sys_clk   ,  
     input           i_sys_resetn,  
     //cmd input
-    input   [WD_CMD_DATA*NB_CMD_ORDE-1:0]  s_cmd_src_arry,
-    input                                  s_cmd_src_updt,
+    input   [WD_CMD_DATA*NB_CMD_ORDE-1:0]  s_cmd_dst_arry,
+    input                                  s_cmd_dst_updt,
     //shake cmd master
     output                       m_shk_0_cmd_valid,
     output                       m_shk_0_cmd_msync,
@@ -92,13 +92,11 @@ localparam WD_CMD_ORDE = LOG2(NB_CMD_ORDE);
 //========================================================
 //localparam to converation and calculate
 localparam WD_BYTE = 8; //byte == 8bit
-localparam NB_SRC_DIV_DST = WD_SHKA_DATA / WD_BYTE;
-localparam NB_BCK_BYTE    = NB_SRC_DIV_DST * NB_BCK_DATA;
 //========================================================
 //register and wire to time sequence and combine
 // ----------------------------------------------------------
 // cmd convert
-wire [WD_CMD_DATA-1:0]  w_cmd_src_arry [0:NB_CMD_ORDE-1];
+wire [WD_CMD_DATA-1:0]  w_cmd_dst_arry [0:NB_CMD_ORDE-1];
 // ----------------------------------------------------------
 // shk cmd ini
 //write data
@@ -116,7 +114,7 @@ assign m_shk_0_cmd_maddr = r_shk_0_cmd_maddr;
 //read data
 reg [WD_BYTE*2-1:0]    r_read_data_temp;
 reg [WD_BYTE  -1:0]    r_read_data_numb;
-reg                    r_check_iic_flag = 0; //0: normal 1: error
+reg                    r_check_iic_flag; //0: normal 1: error
 // ----------------------------------------------------------
 // write times numb count
 reg [WD_CMD_ORDE-1:0]   r_cmd_write_numb;
@@ -125,7 +123,6 @@ reg [WD_CMD_ORDE-1:0]   r_cmd_write_numb;
 reg                       r_shk_a_bck_valid;
 reg                       r_shk_a_bck_valid_d1;
 wire                      w_shk_a_bck_valid_pos;
-reg                       r_shk_a_bck_valid_wait;
 reg                       r_shk_a_bck_msync;
 reg   [WD_BYTE    -1:0]   r_shk_a_bck_msync_cunt;
 reg   [WD_SHKA_DATA-1:0]  r_shk_a_bck_mdata;
@@ -179,7 +176,7 @@ localparam CHECH_DAT    = 6;
 localparam OVER         = 7;
 //state variable
 reg [3:0] cstate = IDLE;
-reg [7:0] r_dat_send_cnt = 0;
+reg [7:0] r_dat_send_cnt;
 //state logic
 always @(posedge i_sys_clk)
     if(!i_sys_resetn)
@@ -189,7 +186,7 @@ always @(posedge i_sys_clk)
     else
     begin
         case(cstate)
-            IDLE : if(s_cmd_src_updt) //whether goto next state
+            IDLE : if(s_cmd_dst_updt) //whether goto next state
                 begin  
                     if(1) //which state to go
                     begin
@@ -279,7 +276,7 @@ begin
     end
     else if(cstate == WRITE_DAT || cstate == ADDR_DAT || cstate == READ_DAT)
     begin
-        r_dat_send_cnt <= (  r_dat_send_cnt[8-1]  ) ? r_dat_send_cnt :
+        r_dat_send_cnt <= (  r_dat_send_cnt[8]  ) ? r_dat_send_cnt :
                              r_dat_send_cnt + 1'b1;
     end
 end
@@ -288,7 +285,7 @@ end
 generate genvar i;
     for(i = 0; i < NB_CMD_ORDE; i = i + 1)
     begin:FOR_NB_CMD_ORDE
-        assign w_cmd_src_arry[i] = s_cmd_src_arry[WD_CMD_DATA*(i+1)-1:WD_CMD_DATA*i];
+        assign s_cmd_dst_arry[i] = s_cmd_dst_arry[WD_CMD_DATA*(i+1)-1:WD_CMD_DATA*i];
     end
 endgenerate
 // ----------------------------------------------------------
@@ -361,18 +358,18 @@ begin
     begin
         case(r_dat_send_cnt)
             0: r_shk_0_cmd_mdata <= NB_IIC_WR;
-            1: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*4-1:WD_BYTE*3];
-            2: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*3-1:WD_BYTE*2];
-            3: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*1];
-            4: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*1-1:WD_BYTE*0];
+            1: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*4-1:WD_BYTE*3];
+            2: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*3-1:WD_BYTE*2];
+            3: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*1];
+            4: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*1-1:WD_BYTE*0];
         endcase
     end
     else if(cstate == ADDR_DAT)
     begin
         case(r_dat_send_cnt)
             0: r_shk_0_cmd_mdata <= NB_IIC_WR;
-            1: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*4-1:WD_BYTE*3];
-            2: r_shk_0_cmd_mdata <= w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*3-1:WD_BYTE*2];
+            1: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*4-1:WD_BYTE*3];
+            2: r_shk_0_cmd_mdata <= w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*3-1:WD_BYTE*2];
         endcase
     end
     else if(cstate == READ_DAT)
@@ -414,28 +411,13 @@ begin
 end
 always@(posedge i_sys_clk)
 begin
-    if(cstate == IDLE || cstate == CHECH_DAT) //state IDLE reset
-    begin
-        r_read_data_numb <= 1'b0;
-    end
-    else if(cstate == READ_DAT)
-    begin
-        if(m_shk_0_cmd_ssync)
-        begin
-            r_read_data_numb <= r_read_data_numb[WD_BYTE-1] ? r_read_data_numb : 
-                                r_read_data_numb + 1'b1;
-        end
-    end
-end
-always@(posedge i_sys_clk)
-begin
-    if(cstate == START) //state START reset, new cmd recv
+    if(cstate == IDLE) //state IDLE reset
     begin
         r_check_iic_flag <= 1'b0;
     end
     else if(cstate == CHECH_DAT)
     begin
-        if(r_read_data_temp != w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*0])
+        if(r_read_data_temp != w_cmd_dst_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*0])
         begin
             r_check_iic_flag <= 1'b1;
         end
@@ -489,29 +471,14 @@ begin
         r_shk_a_bck_valid_d1 <= r_shk_a_bck_valid;  //
     end
 end
-assign w_shk_a_bck_valid_pos = r_shk_a_bck_valid && !r_shk_a_bck_valid_d1;
-always@(posedge i_sys_clk)
-begin
-    if(!i_sys_resetn) //system reset
-    begin
-        r_shk_a_bck_valid_wait <= 1'b0; //
-    end
-    else if(w_shk_a_bck_valid_pos) //
-    begin
-        r_shk_a_bck_valid_wait <= 1'b1;  //
-    end
-    else if(r_shk_a_bck_msync)
-    begin
-        r_shk_a_bck_valid_wait <= 1'b0;
-    end
-end
+assign w_shk_wr_valid_pos = r_shk_a_bck_valid && !r_shk_a_bck_valid_d1;
 always@(posedge i_sys_clk)
 begin
     if(!i_sys_resetn) //system reset
     begin
         r_shk_a_bck_msync <= 1'b0; //
     end
-    else if(r_shk_a_bck_valid_wait && m_shk_a_bck_ssync) //
+    else if(w_shk_wr_valid_pos) //
     begin
         r_shk_a_bck_msync <= 1'b1;  //
     end
@@ -561,9 +528,9 @@ begin
 end
 assign w_string_int = (w_bck_cmd_flag ) ? SR_BCK_ERR : SR_BCK_DATA; //little format
 generate genvar m;
-    for(m = 0; m < NB_BCK_BYTE; m = m + 1)
-    begin:FOR_NB_BCK_BYTE
-        assign w_string_int_big[WD_BYTE*(m+1)-1:WD_BYTE*m] = w_string_int[WD_BYTE*(NB_BCK_BYTE-m)-1:WD_BYTE*(NB_BCK_BYTE-1-m)];
+    for(m = 0; m < NB_BCK_DATA; m = m + 1)
+    begin:FOR_NB_BCK_DATA
+        assign w_string_int_big[WD_BYTE*(m+1)-1:WD_BYTE*m] = w_string_int[WD_BYTE*(NB_BCK_DATA-m)-1:WD_BYTE*(NB_BCK_DATA-m-1)];
     end
 endgenerate
 generate genvar k;
