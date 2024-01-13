@@ -21,6 +21,7 @@
 //         * 
 // Revision: 0.01 
 // Revision 0.01 - File Created
+//          1.1  - add CHECK addr filter
 // Additional Comments:
 // 
 // *******************************************************************************
@@ -28,13 +29,14 @@ module cmd_ini_shk #(
     //mode
     parameter MD_SIM_ABLE = 0,
     //number
-    
+    //check addr
+    parameter NB_CHECK_ADDR = 16'h3012 , //1.1  - add CHECK addr filter
     //cmd input
     parameter WD_CMD_DATA = 32,
     parameter NB_CMD_ORDE = 32,
     //shake bus
     parameter WD_SHK0_DATA = 8 ,
-    parameter WD_SHK0_ADDR = 16,
+    parameter WD_SHK0_ADDR = 32,
     //iic addr
     parameter NB_IIC_WR = 8'h20,
     parameter NB_IIC_RD = 8'h21,
@@ -245,9 +247,9 @@ always @(posedge i_sys_clk)
                         cstate <= CHECH_DAT;
                     end
                 end
-            CHECH_DAT: if(r_cmd_write_numb == NB_CMD_ORDE  - 1'b1)
+            CHECH_DAT: if(1)
                 begin
-                    if(1)
+                    if(r_cmd_write_numb == NB_CMD_ORDE  - 1'b1)
                     begin
                         cstate <= OVER;
                     end
@@ -339,7 +341,7 @@ begin
             r_shk_0_cmd_msync <= 1'b0;
         end
     end
-    else if(cstate == READ_REQ)
+    else if(cstate == READ_DAT)
     begin
         if(r_dat_send_cnt <  1)  //and 1 head to write
         begin
@@ -349,6 +351,13 @@ begin
         begin
             r_shk_0_cmd_msync <= 1'b0;
         end
+    end
+end
+always@(posedge i_sys_clk)
+begin
+    if(1) //addr monitor
+    begin
+        r_shk_0_cmd_maddr <= w_cmd_src_arry[r_cmd_write_numb];
     end
 end
 always@(posedge i_sys_clk)
@@ -378,7 +387,7 @@ begin
     else if(cstate == READ_DAT)
     begin
         case(r_dat_send_cnt)
-            0: r_shk_0_cmd_mdata <= NB_IIC_WR;
+            0: r_shk_0_cmd_mdata <= NB_IIC_RD;
         endcase
     end
 end
@@ -435,7 +444,8 @@ begin
     end
     else if(cstate == CHECH_DAT)
     begin
-        if(r_read_data_temp != w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*0])
+        if(r_read_data_temp != w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*2-1:WD_BYTE*0]
+            && NB_CHECK_ADDR == w_cmd_src_arry[r_cmd_write_numb][WD_BYTE*4-1:WD_BYTE*3])
         begin
             r_check_iic_flag <= 1'b1;
         end

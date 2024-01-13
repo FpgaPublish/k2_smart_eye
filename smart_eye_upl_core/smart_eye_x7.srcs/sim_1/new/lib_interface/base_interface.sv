@@ -19,3 +19,11 @@ interface uart_interface;
     logic [`WD_CMD_ADDR-1:0] addr;
 endinterface //uart_interface
 
+interface sensor_interface;
+    logic                   pclk;
+    logic  [`WD_BYTE-1:0]   data;
+    logic                   href;
+    logic                   vsyn;
+    logic                   xclk;
+    logic                   assert_flg;
+endinterface

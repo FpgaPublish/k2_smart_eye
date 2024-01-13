@@ -24,6 +24,7 @@ s_shk_0_saddr:read addr}
   ipgui::add_param $IPINST -name "WD_SHK_ADDR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "WD_SHK_DATA" -parent ${Page_0}
 
+  ipgui::add_param $IPINST -name "WD_MNT_DAT"
 
 }
 
@@ -78,6 +79,15 @@ proc update_PARAM_VALUE.WD_ERR_INFO { PARAM_VALUE.WD_ERR_INFO } {
 
 proc validate_PARAM_VALUE.WD_ERR_INFO { PARAM_VALUE.WD_ERR_INFO } {
 	# Procedure called to validate WD_ERR_INFO
+	return true
+}
+
+proc update_PARAM_VALUE.WD_MNT_DAT { PARAM_VALUE.WD_MNT_DAT } {
+	# Procedure called to update WD_MNT_DAT when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.WD_MNT_DAT { PARAM_VALUE.WD_MNT_DAT } {
+	# Procedure called to validate WD_MNT_DAT
 	return true
 }
 
@@ -138,5 +148,10 @@ proc update_MODELPARAM_VALUE.WD_SHK_ADDR { MODELPARAM_VALUE.WD_SHK_ADDR PARAM_VA
 proc update_MODELPARAM_VALUE.WD_ERR_INFO { MODELPARAM_VALUE.WD_ERR_INFO PARAM_VALUE.WD_ERR_INFO } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.WD_ERR_INFO}] ${MODELPARAM_VALUE.WD_ERR_INFO}
+}
+
+proc update_MODELPARAM_VALUE.WD_MNT_DAT { MODELPARAM_VALUE.WD_MNT_DAT PARAM_VALUE.WD_MNT_DAT } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.WD_MNT_DAT}] ${MODELPARAM_VALUE.WD_MNT_DAT}
 }
 

@@ -2183,8 +2183,8 @@
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-12-16T17:35:12Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-12-31T14:59:25Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.df@39b32c82_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
@@ -2209,6 +2209,11 @@
         <xilinx:tag xilinx:name="ui.data.coregen.df@3144a6df_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@c2a2d88_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@1179a95e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@589cc0fb_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6c2feb28_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5810912d_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3b35d7ed_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7100ae3c_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/shk_slv_arbitration</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

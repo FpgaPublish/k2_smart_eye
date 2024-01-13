@@ -97,8 +97,8 @@ begin
 end
 assign m_shk_sim_valid = r_delay_cunt == 1;
 assign m_shk_sim_msync = r_delay_cunt == 2 ** NB_SHK_SYNC;
-assign m_shk_sim_mdata = NB_ADDR_INIT;
-assign m_shk_sim_maddr = NB_DATA_INIT;
+assign m_shk_sim_mdata = NB_DATA_INIT;
+assign m_shk_sim_maddr = NB_ADDR_INIT;
 // ----------------------------------------------------------
 // slaver control
 always@(posedge i_sys_clk)

@@ -1,0 +1,3 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_NB_DDR_INI2_ENABLEMENT {NB_DDR_NUMB } {expr $NB_DDR_NUMB > 1}
+proc gen_USERPARAMETER_NB_DDR_INI3_ENABLEMENT {NB_DDR_NUMB } {expr $NB_DDR_NUMB > 2}

@@ -22,6 +22,7 @@
 // Revision: 0.01 
 // Revision 0.01 - File Created
 //          1.1  - fix width not match
+//          1.2  - fix scl low in stop
 // Additional Comments:
 // 
 // *******************************************************************************
@@ -58,6 +59,8 @@ module shk_to_iic #(
     //shake bus
     parameter WD_SHK_DATA = 8,
     parameter WD_SHK_ADDR = 16,
+    //monitor param
+    parameter WD_MNT_DAT  = 8,
     //width
     parameter WD_ERR_INFO = 4
 )(
@@ -75,8 +78,11 @@ module shk_to_iic #(
     output   [WD_SHK_DATA-1:0]  s_shk_0_sdata,
     output   [WD_SHK_ADDR-1:0]  s_shk_0_saddr,
     //iic master
-    inout                       m_iic_0_sda,
+    //inout                       m_iic_0_sda,
     output                      m_iic_0_scl,
+    output                      m_iic_0_sdo,
+    output                      m_iic_0_tri,
+    input                       m_iic_0_sdi,
     //error info feedback
     output   [WD_ERR_INFO-1:0]  m_err_shk_info1
 );
@@ -95,7 +101,7 @@ endfunction
 //========================================================
 //localparam to converation and calculate
 localparam NB_SCL_CNT = NB_SCL_PER / NB_SYS_PER;
-localparam WD_SCL_CNT = LOG2_N(NB_SCL_CNT);
+localparam WD_SCL_CNT = LOG2_N(NB_SCL_CNT) + 1; //for stop
 localparam NB_WR_POINT = NB_SCL_CNT * 1 / 4;
 localparam NB_SCL_RISE = NB_SCL_CNT * 2 / 4;
 localparam NB_RD_POINT = NB_SCL_CNT * 3 / 4;
@@ -137,6 +143,7 @@ reg [WD_SHK_DATA-1:0]  r_shk_0_rd_numb; //mdat1
 reg [WD_SHK_ADDR-1:0]  r_shk_0_maddr = 0;
 reg [WD_SHK_DATA-1:0]  r_shk_0_mdata_tmp;
 reg [WD_SHK_ADDR-1:0]  r_shk_0_wr_numb;
+
 // ----------------------------------------------------------
 // shk output data
 reg                    r_shk_0_ready;
@@ -152,6 +159,8 @@ reg [WD_BIT_ADR -1:0] r_bit_cnt_adr;
 reg [WD_SHK_DATA-1:0] r_byt_cnt;
 reg [WD_BYT_ONC-1:0]  r_adr_cnt;
 wire                  w_rd_flag;
+
+
 // ----------------------------------------------------------
 // iic interface
 reg  r_iic_0_scl;
@@ -159,6 +168,7 @@ reg  r_iic_0_sdo;
 reg  r_iic_0_tri;
 wire w_iic_0_sdi;
 reg [WD_SHK_DATA-1:0] r_iic_0_rd;
+
 //========================================================
 //always and assign to drive logic and connect
 /* end verilog
@@ -367,9 +377,17 @@ begin
     begin
         if(s_shk_0_valid)
         begin
-            r_shk_0_saddr <= s_shk_0_maddr;
+            r_shk_0_saddr <= 1'b0;
         end
-        
+    end
+    else if(cstate == TRAN)
+    begin
+        if(w_rd_flag
+        && r_bit_cnt >= WD_SHK_DATA + NB_ACK_BIT - 1'b1
+        && r_scl_cnt >= NB_SCL_CNT - 1'b1)
+        begin
+            r_shk_0_saddr <= {r_shk_0_saddr[WD_SHK_ADDR-WD_SHK_DATA-1:0],r_iic_0_rd};
+        end
     end
     
 end
@@ -487,11 +505,12 @@ begin
     end
     else if(cstate == STOP)
     begin
-        if(r_scl_cnt == NB_SCL_CNT - 1'b1)
-        begin
-            r_iic_0_scl <= 1'b0;
-        end
-        else if(r_scl_cnt == NB_SCL_RISE - 1'b1)
+        // if(r_scl_cnt == NB_SCL_CNT - 1'b1)
+        // begin
+        //     r_iic_0_scl <= 1'b0;
+        // end
+        // else //1.2  - fix scl low in stop
+        if(r_scl_cnt == NB_SCL_RISE - 1'b1)
         begin
             r_iic_0_scl <= 1'b1;
         end
@@ -585,17 +604,20 @@ end
 // assign m_iic_0_sda = r_iic_0_tri ? 1'bz : r_iic_0_sdo;
 // assign w_iic_0_sdi = m_iic_0_sda;
 assign m_iic_0_scl = r_iic_0_scl;
-IOBUF #(
-    .DRIVE(12), // Specify the output drive strength
-    .IBUF_LOW_PWR("TRUE"),  // Low Power - "TRUE", High Performance = "FALSE" 
-    .IOSTANDARD("DEFAULT"), // Specify the I/O standard
-    .SLEW("SLOW") // Specify the output slew rate
-) IOBUF_inst (
-    .O (w_iic_0_sdi),     // Buffer output
-    .IO(m_iic_0_sda),     // Buffer inout port (connect directly to top-level port)
-    .I (r_iic_0_sdo),     // Buffer input
-    .T (r_iic_0_tri)      // 3-state enable input, high=input, low=output
-);
+// IOBUF #(
+//     .DRIVE(12), // Specify the output drive strength
+//     .IBUF_LOW_PWR("TRUE"),  // Low Power - "TRUE", High Performance = "FALSE" 
+//     .IOSTANDARD("DEFAULT"), // Specify the I/O standard
+//     .SLEW("SLOW") // Specify the output slew rate
+// ) IOBUF_inst (
+//     .O (w_iic_0_sdi),     // Buffer output
+//     .IO(m_iic_0_sda),     // Buffer inout port (connect directly to top-level port)
+//     .I (r_iic_0_sdo),     // Buffer input
+//     .T (r_iic_0_tri)      // 3-state enable input, high=input, low=output
+// );
+assign m_iic_0_sdo = r_iic_0_sdo;
+assign m_iic_0_tri = r_iic_0_tri;
+assign w_iic_0_sdi = m_iic_0_sdi;
 //========================================================
 //module and task to build part of system
 

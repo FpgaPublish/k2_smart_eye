@@ -26,11 +26,12 @@ puts $fid "* "
 close $fid 
 
 catch {exec code -g $pns_sim_md:10000}
-## --------------------------------------------------------------------
-## pwd back
-cd $p_in
 
 ## --------------------------------------------------------------------
 ## set threads
 set_param general.maxThreads 24
 set_param synth.maxThreads 8
+
+## --------------------------------------------------------------------
+## pwd back
+cd $p_in

@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>user.org</spirit:vendor>
+  <spirit:library>user</spirit:library>
+  <spirit:name>bram_to_shk</spirit:name>
+  <spirit:version>1.0</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>m_shk_dst</spirit:name>
+      <spirit:busType spirit:vendor="fpgaPublish" spirit:library="user" spirit:name="SHK" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="fpgaPublish" spirit:library="user" spirit:name="SHK_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>valid</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_valid</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ready</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_ready</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>msync</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_msync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ssync</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_ssync</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>mdata</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_mdata</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>maddr</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_maddr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>saddr</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_saddr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>sdata</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_shk_dst_sdata</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>i_sys_resetn</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>i_sys_resetn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.I_SYS_RESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>m_bram_src_rst</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>i_sys_clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>i_sys_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.I_SYS_CLK.ASSOCIATED_RESET">i_sys_resetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>m_bram_src_clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.M_BRAM_SRC_CLK.ASSOCIATED_RESET">m_bram_src_rst</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>m_bram_src</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="bram" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="bram_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DIN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_din</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>EN</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_en</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DOUT</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_dout</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>WE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_we</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ADDR</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>m_bram_src_addr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>bram_to_shk</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>8438af35</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:language>Verilog</spirit:language>
+        <spirit:modelName>bram_to_shk</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>8438af35</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_xpgui</spirit:name>
+        <spirit:displayName>UI Layout</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xgui.ui</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_xpgui_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>970c9af0</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_utilityxitfiles</spirit:name>
+        <spirit:displayName>Utility XIT/TTCL</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xit.util</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_utilityxitfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>d62fb016</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_productguide</spirit:name>
+        <spirit:displayName>Product Guide</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:docs.productguide</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_productguide_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>e72171e2</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>i_sys_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>i_sys_resetn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>s_info_wr_last</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>s_info_wr_fram</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_addr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_BRAM_ADDR&apos;)) - 1)">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_din</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_BRAM_DATA&apos;)) - 1)">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_dout</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_BRAM_DATA&apos;)) - 1)">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">8</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_en</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_bram_src_we</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_valid</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_msync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_mdata</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_SHK_DATA&apos;)) - 1)">63</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_maddr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_SHK_ADDR&apos;)) - 1)">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_ready</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_ssync</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_sdata</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_SHK_DATA&apos;)) - 1)">63</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_shk_dst_saddr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_SHK_ADDR&apos;)) - 1)">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>m_err_bram_info1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.WD_ERR_INFO&apos;)) - 1)">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+    <spirit:modelParameters>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
+        <spirit:name>MD_SIM_ABLE</spirit:name>
+        <spirit:displayName>Md Sim Able</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.MD_SIM_ABLE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_BRAM_DELY</spirit:name>
+        <spirit:displayName>Nb Bram Dely</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_BRAM_DELY">2</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_MAX</spirit:name>
+        <spirit:displayName>Nb Ddr Max</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_MAX" spirit:bitStringLength="32">0x40000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_INI1</spirit:name>
+        <spirit:displayName>Nb Ddr Ini1</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_INI1" spirit:bitStringLength="32">0x02000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_INI2</spirit:name>
+        <spirit:displayName>Nb Ddr Ini2</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_INI2" spirit:bitStringLength="32">0x04000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_INI3</spirit:name>
+        <spirit:displayName>Nb Ddr Ini3</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_INI3" spirit:bitStringLength="32">0x06000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_ONC</spirit:name>
+        <spirit:displayName>Nb Ddr Onc</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_ONC">4096</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>WD_SHK_DATA</spirit:name>
+        <spirit:displayName>Wd Shk Data</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WD_SHK_DATA">64</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>WD_SHK_ADDR</spirit:name>
+        <spirit:displayName>Wd Shk Addr</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WD_SHK_ADDR">32</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>WD_BRAM_ADDR</spirit:name>
+        <spirit:displayName>Wd Bram Addr</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WD_BRAM_ADDR">8</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>WD_BRAM_DATA</spirit:name>
+        <spirit:displayName>Wd Bram Data</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WD_BRAM_DATA">8</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>WD_ERR_INFO</spirit:name>
+        <spirit:displayName>Wd Err Info</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WD_ERR_INFO">4</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>NB_DDR_NUMB</spirit:name>
+        <spirit:displayName>Nb Ddr Numb</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NB_DDR_NUMB">3</spirit:value>
+      </spirit:modelParameter>
+    </spirit:modelParameters>
+  </spirit:model>
+  <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
+    </spirit:choice>
+  </spirit:choices>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bram_to_shk.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_8438af35</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bram_to_shk.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/bram_to_shk_v1_0.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_970c9af0</spirit:userFileType>
+        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_utilityxitfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>gui/bram_to_shk_v1_0.gtcl</spirit:name>
+        <spirit:userFileType>GTCL</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_productguide_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bram_to_shk.html</spirit:name>
+        <spirit:userFileType>html</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>bram_to_shk_v1_0</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>MD_SIM_ABLE</spirit:name>
+      <spirit:displayName>Md Sim Able</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.MD_SIM_ABLE">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_BRAM_DELY</spirit:name>
+      <spirit:displayName>Nb Bram Dely</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_BRAM_DELY">2</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_MAX</spirit:name>
+      <spirit:displayName>Nb Ddr Max</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_MAX" spirit:bitStringLength="32">0x40000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_INI1</spirit:name>
+      <spirit:displayName>Nb Ddr Ini1</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_INI1" spirit:bitStringLength="32">0x02000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_INI2</spirit:name>
+      <spirit:displayName>Nb Ddr Ini2</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_INI2" spirit:bitStringLength="32">0x04000000</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="generated" xilinx:id="PARAM_ENABLEMENT.NB_DDR_INI2">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_INI3</spirit:name>
+      <spirit:displayName>Nb Ddr Ini3</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_INI3" spirit:bitStringLength="32">0x06000000</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="generated" xilinx:id="PARAM_ENABLEMENT.NB_DDR_INI3">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_ONC</spirit:name>
+      <spirit:displayName>Nb Ddr Onc</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_ONC">4096</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>WD_SHK_DATA</spirit:name>
+      <spirit:displayName>Wd Shk Data</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.WD_SHK_DATA">64</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>WD_SHK_ADDR</spirit:name>
+      <spirit:displayName>Wd Shk Addr</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.WD_SHK_ADDR">32</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>WD_BRAM_ADDR</spirit:name>
+      <spirit:displayName>Wd Bram Addr</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.WD_BRAM_ADDR">8</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>WD_BRAM_DATA</spirit:name>
+      <spirit:displayName>Wd Bram Data</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.WD_BRAM_DATA">8</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>WD_ERR_INFO</spirit:name>
+      <spirit:displayName>Wd Err Info</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.WD_ERR_INFO">4</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">bram_to_shk_v1_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NB_DDR_NUMB</spirit:name>
+      <spirit:displayName>Nb Ddr Numb</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NB_DDR_NUMB">3</spirit:value>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:supportedFamilies>
+        <xilinx:family xilinx:lifeCycle="Production">virtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qvirtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">versal</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">akintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">spartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">aspartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">virtexu</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">virtexuplusHBM</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">virtexuplus58g</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">kintexuplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">artixuplus</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Production">kintexu</xilinx:family>
+      </xilinx:supportedFamilies>
+      <xilinx:taxonomies>
+        <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
+      </xilinx:taxonomies>
+      <xilinx:displayName>bram_to_shk_v1_0</xilinx:displayName>
+      <xilinx:definitionSource>package_project</xilinx:definitionSource>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-12-31T09:09:36Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5d5905d8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@16658654_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@c92381a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@25790f0e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1d105675_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4d8b4b9e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6205cae_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@30c04f72_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3e190be3_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@439f57aa_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@13605238_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5451d107_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@56259402_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@435f42a8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@83d53d_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@398fa_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5f886fe2_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2ba5d423_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@69808f0c_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5c407291_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@743d72d2_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2f7c645e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@61cb5a9c_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4afdd824_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@35bf5efe_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@78ceb5f8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3b5c4b1_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@9c07974_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7a3f0287_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2174d3e5_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@54793a38_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2db4dda1_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@45463ddd_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7da2de92_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6b4b89ef_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5988b3ca_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@47d1a5a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@13ffa893_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7f738887_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@27cc0de2_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@66ff44c4_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@19cf66c1_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@30aef517_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1f488120_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@26c6acfe_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5d56021a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@130f7008_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@61cda061_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@327f2073_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1b829db6_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@39a4a116_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@53190df4_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3b24626c_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@67feb8bd_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@53d9bbfc_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@75d2b435_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4b533cb9_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6f3e1f8f_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@781716e6_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@53b2f270_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@54fcb6d0_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7fffb4cb_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@63a47e33_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@651514a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@44f085b8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@29e7b2f3_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1bafdde_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3d77ff47_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@315abbf8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@219bd26d_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5b74c895_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3cb39cea_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@646fcd78_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@72073243_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2d761ab6_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@91d9ffd_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1fd31b97_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@155aa272_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4a8b5ebb_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2b99e963_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1744ee8_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@25158de9_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4e8c93f0_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2034a536_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@49c02079_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7bfb2750_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@356df91a_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@670521e_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6b378d94_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@38dc65fc_ARCHIVE_LOCATION">/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips/bram_to_shk</xilinx:tag>
+      </xilinx:tags>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2021.1</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1b8a4751"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b8e6b45f"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="059a962a"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="58f68805"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="5b7d0473"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

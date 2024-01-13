@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Dec 31 23:08:54 2023
+# Process ID: 344041
+# Current directory: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/xsim
+# Command line: wbtcv -mode batch -source /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/xsim/xsim.dir/sim_tb_top_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/xsim/webtalk.jou
+#-----------------------------------------------------------
+source /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/xsim/xsim.dir/sim_tb_top_behav/webtalk/xsim_webtalk.tcl -notrace

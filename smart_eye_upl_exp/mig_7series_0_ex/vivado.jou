@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon Jan  1 21:23:12 2024
+# Process ID: 428000
+# Current directory: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex
+# Command line: vivado /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.xpr
+# Log file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/vivado.log
+# Journal file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.xpr
+update_compile_order -fileset sources_1
+launch_simulation

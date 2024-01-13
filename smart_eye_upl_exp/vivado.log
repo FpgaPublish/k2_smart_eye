@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon Jan  1 21:53:20 2024
+# Process ID: 552629
+# Current directory: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp
+# Command line: vivado
+# Log file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/vivado.log
+# Journal file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_hw_manager
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.1/data/ip'.
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2021.1
+  **** Build date : Jun 10 2021 at 20:11:57
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+ERROR: Cannot start server on port 3042: already in use.
+
+ERROR: [Labtools 27-2220] Launch Error:
+Unable to launch local cs_server executable.
+ERROR: Cannot start server on port 3042: already in use.
+
+ERROR: [Common 17-39] 'connect_hw_server' failed due to earlier errors.
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Jan  1 21:53:41 2024...

@@ -8,6 +8,7 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "NB_BCK_DATA" -parent ${Page_0}
   ipgui::add_param $IPINST -name "NB_CMD_ORDE" -parent ${Page_0}
   ipgui::add_param $IPINST -name "NB_IIC_RD" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "NB_CHECK_ADDR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "NB_IIC_WR" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SR_BCK_DATA" -parent ${Page_0}
   ipgui::add_param $IPINST -name "SR_BCK_ERR" -parent ${Page_0}
@@ -48,6 +49,15 @@ proc update_PARAM_VALUE.NB_BCK_DATA { PARAM_VALUE.NB_BCK_DATA } {
 
 proc validate_PARAM_VALUE.NB_BCK_DATA { PARAM_VALUE.NB_BCK_DATA } {
 	# Procedure called to validate NB_BCK_DATA
+	return true
+}
+
+proc update_PARAM_VALUE.NB_CHECK_ADDR { PARAM_VALUE.NB_CHECK_ADDR } {
+	# Procedure called to update NB_CHECK_ADDR when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.NB_CHECK_ADDR { PARAM_VALUE.NB_CHECK_ADDR } {
+	# Procedure called to validate NB_CHECK_ADDR
 	return true
 }
 
@@ -219,5 +229,10 @@ proc update_MODELPARAM_VALUE.NB_BCK_DATA { MODELPARAM_VALUE.NB_BCK_DATA PARAM_VA
 proc update_MODELPARAM_VALUE.WD_ERR_INFO { MODELPARAM_VALUE.WD_ERR_INFO PARAM_VALUE.WD_ERR_INFO } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.WD_ERR_INFO}] ${MODELPARAM_VALUE.WD_ERR_INFO}
+}
+
+proc update_MODELPARAM_VALUE.NB_CHECK_ADDR { MODELPARAM_VALUE.NB_CHECK_ADDR PARAM_VALUE.NB_CHECK_ADDR } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.NB_CHECK_ADDR}] ${MODELPARAM_VALUE.NB_CHECK_ADDR}
 }
 

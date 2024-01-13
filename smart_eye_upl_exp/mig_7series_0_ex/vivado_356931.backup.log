@@ -1,0 +1,199 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Dec 31 23:51:12 2023
+# Process ID: 356931
+# Current directory: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex
+# Command line: vivado /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.xpr
+# Log file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/vivado.log
+# Journal file: /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_ips'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/fpga/u1_library/k2_smart_eye/smart_eye_upub_interface'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2021.1/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+update_compile_order -fileset sources_1
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+set_property target_simulator ModelSim [current_project]
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'sim_tb_top'
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'ModelSim' simulator...
+INFO: [Runs 36-567] Checking/generating simulation output products for IPs/BDs (if any)...
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/modelsim'
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [USF-ModelSim-47] Finding simulator installation...
+INFO: [USF-ModelSim-49] Using simulator executables from '/home/fpga/software/modelsim/modeltech/bin'
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [USF-modelsim-7] Finding pre-compiled libraries...
+INFO: [USF-modelsim-11] File '/home/fpga/u4_lib_modelsim/modelsim.ini' copied to run dir:'/home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/modelsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'sim_tb_top' in fileset 'sim_1'...
+INFO: [USF-ModelSim-107] Finding global include files...
+INFO: [USF-ModelSim-108] Finding include directories and verilog header directory paths...
+INFO: [USF-ModelSim-109] Fetching design files from 'sim_1'...
+INFO: [USF-ModelSim-2] ModelSim::Compile design
+INFO: [USF-ModelSim-15] Creating automatic 'do' files...
+INFO: [USF-ModelSim-69] Executing 'COMPILE and ANALYZE' step in '/home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/modelsim'
+Model Technology ModelSim SE-64 vmap 2020.4 Lib Mapping Utility 2020.10 Oct 13 2020
+vmap xil_defaultlib modelsim_lib/msim/xil_defaultlib 
+Modifying modelsim.ini
+Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 23:54:09 on Dec 31,2023
+vlog -64 -incr -mfcu -work xil_defaultlib "+incdir+../../../../imports" ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ui/mig_7series_v4_2_ui_cmd.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ui/mig_7series_v4_2_ui_wr_data.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ui/mig_7series_v4_2_ui_rd_data.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ui/mig_7series_v4_2_ui_top.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_wrlvl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_byte_group_io.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_calib_top.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_lim.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_prbs_gen.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_top.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_oclkdelay_cal.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_if_post_fifo.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_pd.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_init.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_cc.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_edge.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_mc_phy.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_data.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_mc_phy_wrapper.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_po_cntlr.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_mux.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_prbs_rdlvl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_skip_calib_tap.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_dqs_found_cal.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ck_addr_cmd_delay.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_rdlvl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_samp.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_tempmon.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_4lanes.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_edge_store.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_top.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_wrcal.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_wrlvl_off_delay.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_tap_base.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_byte_lane.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_dqs_found_cal_hr.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_of_pre_fifo.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_poc_meta.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_ocd_cntlr.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/clocking/mig_7series_v4_2_infrastructure.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/clocking/mig_7series_v4_2_clk_ibuf.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/clocking/mig_7series_v4_2_tempmon.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/clocking/mig_7series_v4_2_iodelay_ctrl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ecc/mig_7series_v4_2_ecc_merge_enc.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ecc/mig_7series_v4_2_ecc_buf.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ecc/mig_7series_v4_2_ecc_dec_fix.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ecc/mig_7series_v4_2_fi_xor.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ecc/mig_7series_v4_2_ecc_gen.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ip_top/mig_7series_v4_2_memc_ui_top_axi.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/ip_top/mig_7series_v4_2_mem_intfc.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_rank_mach.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_arb_select.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_rank_common.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_queue.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_arb_mux.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_mc.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_cntrl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_state.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_compare.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_col_mach.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_arb_row_col.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_mach.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_round_robin_arb.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_bank_common.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/controller/mig_7series_v4_2_rank_cntrl.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_comparator_sel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_top.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_axic_register_slice.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_axi_upsizer.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_cmd_fsm.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_b_channel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_r_channel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_comparator_sel_static.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_wrap_cmd.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_ar_channel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_aw_channel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_axi_register_slice.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_command_fifo.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_cmd_translator.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_carry_or.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_addr_decode.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_wr_cmd_fsm.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_read.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_cmd_arbiter.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_a_upsizer.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_r_upsizer.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_incr_cmd.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_fifo.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_reg_bank.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_simple_fifo.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_w_upsizer.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_mc_w_channel.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_carry_latch_and.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_carry_latch_or.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_comparator.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_reg.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_axi_ctrl_write.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/axi/mig_7series_v4_2_ddr_carry_and.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/mig_7series_0_mig_sim.v ../../../../mig_7series_0_ex.gen/sources_1/ip/mig_7series_0/mig_7series_0/user_design/rtl/mig_7series_0.v ../../../../imports/example_top.v ../../../../imports/mig_7series_v4_2_axi4_tg.v ../../../../imports/mig_7series_v4_2_axi4_wrapper.v ../../../../imports/mig_7series_v4_2_cmd_prbs_gen_axi.v ../../../../imports/mig_7series_v4_2_data_gen_chk.v ../../../../imports/mig_7series_v4_2_tg.v ../../../../imports/wiredly.v 
+-- Compiling module mig_7series_v4_2_ui_cmd
+-- Compiling module mig_7series_v4_2_ui_wr_data
+-- Compiling module mig_7series_v4_2_ui_rd_data
+-- Compiling module mig_7series_v4_2_ui_top
+-- Compiling module mig_7series_v4_2_ddr_phy_wrlvl
+-- Compiling module mig_7series_v4_2_ddr_byte_group_io
+-- Compiling module mig_7series_v4_2_ddr_calib_top
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_lim
+-- Compiling module mig_7series_v4_2_ddr_prbs_gen
+-- Compiling module mig_7series_v4_2_poc_top
+-- Compiling module mig_7series_v4_2_ddr_phy_oclkdelay_cal
+-- Compiling module mig_7series_v4_2_ddr_if_post_fifo
+-- Compiling module mig_7series_v4_2_poc_pd
+-- Compiling module mig_7series_v4_2_ddr_phy_init
+-- Compiling module mig_7series_v4_2_poc_cc
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_edge
+-- Compiling module mig_7series_v4_2_ddr_mc_phy
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_data
+-- Compiling module mig_7series_v4_2_ddr_mc_phy_wrapper
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_po_cntlr
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_mux
+-- Compiling module mig_7series_v4_2_ddr_phy_prbs_rdlvl
+-- Compiling module mig_7series_v4_2_ddr_skip_calib_tap
+-- Compiling module mig_7series_v4_2_ddr_phy_dqs_found_cal
+-- Compiling module mig_7series_v4_2_ddr_phy_ck_addr_cmd_delay
+-- Compiling module mig_7series_v4_2_ddr_phy_rdlvl
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_samp
+-- Compiling module mig_7series_v4_2_ddr_phy_tempmon
+-- Compiling module mig_7series_v4_2_ddr_phy_4lanes
+-- Compiling module mig_7series_v4_2_poc_edge_store
+-- Compiling module mig_7series_v4_2_ddr_phy_top
+-- Compiling module mig_7series_v4_2_ddr_phy_wrcal
+-- Compiling module mig_7series_v4_2_ddr_phy_wrlvl_off_delay
+-- Compiling module mig_7series_v4_2_poc_tap_base
+-- Compiling module mig_7series_v4_2_ddr_byte_lane
+-- Compiling module mig_7series_v4_2_ddr_phy_dqs_found_cal_hr
+-- Compiling module mig_7series_v4_2_ddr_of_pre_fifo
+-- Compiling module mig_7series_v4_2_poc_meta
+-- Compiling module mig_7series_v4_2_ddr_phy_ocd_cntlr
+-- Compiling module mig_7series_v4_2_infrastructure
+-- Compiling module mig_7series_v4_2_clk_ibuf
+-- Compiling module mig_7series_v4_2_tempmon
+-- Compiling module mig_7series_v4_2_iodelay_ctrl
+-- Compiling module mig_7series_v4_2_ecc_merge_enc
+-- Compiling module mig_7series_v4_2_ecc_buf
+-- Compiling module mig_7series_v4_2_ecc_dec_fix
+-- Compiling module mig_7series_v4_2_fi_xor
+-- Compiling module mig_7series_v4_2_ecc_gen
+-- Compiling module mig_7series_v4_2_memc_ui_top_axi
+-- Compiling module mig_7series_v4_2_mem_intfc
+-- Compiling module mig_7series_v4_2_rank_mach
+-- Compiling module mig_7series_v4_2_arb_select
+-- Compiling module mig_7series_v4_2_rank_common
+-- Compiling module mig_7series_v4_2_bank_queue
+-- Compiling module mig_7series_v4_2_arb_mux
+-- Compiling module mig_7series_v4_2_mc
+-- Compiling module mig_7series_v4_2_bank_cntrl
+-- Compiling module mig_7series_v4_2_bank_state
+-- Compiling module mig_7series_v4_2_bank_compare
+-- Compiling module mig_7series_v4_2_col_mach
+-- Compiling module mig_7series_v4_2_arb_row_col
+-- Compiling module mig_7series_v4_2_bank_mach
+-- Compiling module mig_7series_v4_2_round_robin_arb
+-- Compiling module mig_7series_v4_2_bank_common
+-- Compiling module mig_7series_v4_2_rank_cntrl
+-- Compiling module mig_7series_v4_2_ddr_comparator_sel
+-- Compiling module mig_7series_v4_2_axi_ctrl_top
+-- Compiling module mig_7series_v4_2_ddr_axic_register_slice
+-- Compiling module mig_7series_v4_2_ddr_axi_upsizer
+-- Compiling module mig_7series_v4_2_axi_mc_cmd_fsm
+-- Compiling module mig_7series_v4_2_axi_mc_b_channel
+-- Compiling module mig_7series_v4_2_axi_mc_r_channel
+-- Compiling module mig_7series_v4_2_ddr_comparator_sel_static
+-- Compiling module mig_7series_v4_2_axi_mc_wrap_cmd
+-- Compiling module mig_7series_v4_2_axi_mc_ar_channel
+-- Compiling module mig_7series_v4_2_axi_mc_aw_channel
+-- Compiling module mig_7series_v4_2_ddr_axi_register_slice
+-- Compiling module mig_7series_v4_2_ddr_command_fifo
+-- Compiling module mig_7series_v4_2_axi_mc_cmd_translator
+-- Compiling module mig_7series_v4_2_ddr_carry_or
+-- Compiling module mig_7series_v4_2_axi_ctrl_addr_decode
+-- Compiling module mig_7series_v4_2_axi_mc_wr_cmd_fsm
+-- Compiling module mig_7series_v4_2_axi_mc
+-- Compiling module mig_7series_v4_2_axi_ctrl_read
+-- Compiling module mig_7series_v4_2_axi_mc_cmd_arbiter
+-- Compiling module mig_7series_v4_2_ddr_a_upsizer
+-- Compiling module mig_7series_v4_2_ddr_r_upsizer
+-- Compiling module mig_7series_v4_2_axi_mc_incr_cmd
+-- Compiling module mig_7series_v4_2_axi_mc_fifo
+-- Compiling module mig_7series_v4_2_axi_ctrl_reg_bank
+-- Compiling module mig_7series_v4_2_axi_mc_simple_fifo
+-- Compiling module mig_7series_v4_2_ddr_w_upsizer
+-- Compiling module mig_7series_v4_2_axi_mc_w_channel
+-- Compiling module mig_7series_v4_2_ddr_carry_latch_and
+-- Compiling module mig_7series_v4_2_ddr_carry_latch_or
+-- Compiling module mig_7series_v4_2_ddr_comparator
+-- Compiling module mig_7series_v4_2_axi_ctrl_reg
+-- Compiling module mig_7series_v4_2_axi_ctrl_write
+-- Compiling module mig_7series_v4_2_ddr_carry_and
+-- Compiling module mig_7series_0_mig
+-- Compiling module mig_7series_0
+-- Compiling module example_top
+-- Compiling module mig_7series_v4_2_axi4_tg
+-- Compiling module mig_7series_v4_2_axi4_wrapper
+-- Compiling module mig_7series_v4_2_cmd_prbs_gen_axi
+-- Compiling module mig_7series_v4_2_data_gen_chk
+-- Compiling module mig_7series_v4_2_tg
+-- Compiling module WireDelay
+
+Top level modules:
+	mig_7series_v4_2_axi_mc_simple_fifo
+	example_top
+	WireDelay
+End time: 23:54:09 on Dec 31,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 23:54:09 on Dec 31,2023
+vlog -64 -incr -mfcu -sv -work xil_defaultlib "+incdir+../../../../imports" ../../../../imports/ddr3_model.sv 
+-- Compiling module ddr3_model
+
+Top level modules:
+	ddr3_model
+End time: 23:54:09 on Dec 31,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 23:54:09 on Dec 31,2023
+vlog -64 -incr -mfcu -work xil_defaultlib "+incdir+../../../../imports" ../../../../imports/sim_tb_top.v 
+-- Compiling module sim_tb_top
+
+Top level modules:
+	sim_tb_top
+End time: 23:54:09 on Dec 31,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 23:54:09 on Dec 31,2023
+vlog -work xil_defaultlib glbl.v 
+-- Compiling module glbl
+
+Top level modules:
+	glbl
+End time: 23:54:09 on Dec 31,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+INFO: [USF-ModelSim-69] 'compile' step finished in '0' seconds
+INFO: [USF-ModelSim-4] ModelSim::Simulate design
+INFO: [USF-ModelSim-69] Executing 'SIMULATE' step in '/home/fpga/u1_library/k2_smart_eye/smart_eye_upl_exp/mig_7series_0_ex/mig_7series_0_ex.sim/sim_1/behav/modelsim'
+Program launched (PID=357794)
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Jan  1 00:23:29 2024...
